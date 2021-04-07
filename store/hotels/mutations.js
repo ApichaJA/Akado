@@ -1,5 +1,6 @@
+/* eslint-disable */
 export default {
-  setHotels({ state }, payload) {
+  setHotels(state, payload) {
     state.hotels = payload
   },
 }

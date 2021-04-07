@@ -1,10 +1,13 @@
+/* eslint-disable */
 export const actions = {
-  async nuxtServerInit({ commit }, { error }) {
-    try {
-      const data = await this.$http.$get('localhost:5000')
-      await commit('hotels/setHotels', data)
-    } catch (e) {
-      error(e)
-    }
+   nuxtServerInit({ commit }, { app, error }) {
+    const data = app.$http
+      .$get('http://localhost:5000')
+      .then((res) => {
+        commit('hotels/setHotels', res)
+      })
+      .catch(e => error(e))
+
+    return data
   },
 }
