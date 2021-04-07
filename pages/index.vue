@@ -34,10 +34,9 @@ export default {
     Logo: () => import('@/components/Logo'),
   },
   data() {
-    return {}
-  },
-  computed: {
-    ...mapGetters('hotels', ['getHotels']),
+    return {
+      getHotels: 'I;OLUYKTJHDGF'
+    }
   },
   // methods:{
   //   pullHos(){
