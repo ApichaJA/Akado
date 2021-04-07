@@ -1,5 +1,5 @@
 <template>
-  <div class="container">
+  <div class="container bg-red-800 min-h-screen max-w-full w-full">
     <div>
       <Logo />
       <h1 class="title">Akado</h1>
@@ -20,22 +20,25 @@
         >
           Support
         </a>
+        {{ getHotels }}
       </div>
     </div>
   </div>
 </template>
 
 <script>
+import { mapGetters } from 'vuex'
+
 export default {
   components: {
     Logo: () => import('@/components/Logo'),
   },
   data() {
-    return {
-      hostel: '',
-    }
+    return {}
   },
-
+  computed: {
+    ...mapGetters('hotels', ['getHotels']),
+  },
   // methods:{
   //   pullHos(){
   //     this.hostel = this.$content
