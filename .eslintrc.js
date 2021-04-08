@@ -16,6 +16,6 @@ module.exports = {
   plugins: ['wdio'],
   // add your custom rules here
   rules: {
-    'prettier/prettier': 0,
+    'prettier/prettier': 1,
   },
 }
