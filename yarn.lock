@@ -2261,15 +2261,25 @@
     loglevel-plugin-prefix "^0.8.4"
     strip-ansi "^6.0.0"
 
-"@wdio/mocha-framework@^7.2.1":
-  version "7.3.0"
-  resolved "https://registry.yarnpkg.com/@wdio/mocha-framework/-/mocha-framework-7.3.0.tgz#51a1a6f72858de0e5b34563e70870bfdd0c027fa"
-  integrity sha512-xVbnuYZrLReu5ED1E1vZU6RQ5PjBPgdx5E6FFa66vDG+Cgu5HNd5uZmepcgJMIsr8YDE8GSOag993HrLBiRFxQ==
+"@wdio/logger@7.4.2":
+  version "7.4.2"
+  resolved "https://registry.yarnpkg.com/@wdio/logger/-/logger-7.4.2.tgz#f1c8b624751da2c5462f855071e7205131339a7e"
+  integrity sha512-vYH0glKyw/rIJ/FJ4g+WQfx6MRKnWEPUspejv5Vit32STKa1IPotw/Y/Axv2qy6os1VHAs9CfH43930q9QZLkA==
+  dependencies:
+    chalk "^4.0.0"
+    loglevel "^1.6.0"
+    loglevel-plugin-prefix "^0.8.4"
+    strip-ansi "^6.0.0"
+
+"@wdio/mocha-framework@^7.5.2":
+  version "7.5.2"
+  resolved "https://registry.yarnpkg.com/@wdio/mocha-framework/-/mocha-framework-7.5.2.tgz#a065beb13c6185d129b9fd81103594e70e9cc769"
+  integrity sha512-zn4aSwSle1fSItgCRzRjbGqScvPUAO5OsUg6ghWFFc9nShn9+suWIdw5skb4RzmGaNaRcFHH8kfZih78o29Ckg==
   dependencies:
     "@types/mocha" "^8.0.0"
-    "@wdio/logger" "7.0.0"
-    "@wdio/types" "7.2.1"
-    "@wdio/utils" "7.3.0"
+    "@wdio/logger" "7.4.2"
+    "@wdio/types" "7.5.2"
+    "@wdio/utils" "7.5.2"
     expect-webdriverio "^2.0.0"
     mocha "^8.0.1"
 
@@ -2339,6 +2349,13 @@
   dependencies:
     got "^11.8.1"
 
+"@wdio/types@7.5.2":
+  version "7.5.2"
+  resolved "https://registry.yarnpkg.com/@wdio/types/-/types-7.5.2.tgz#9f41ee6f175a91c1d213efc020cbf52162b723cb"
+  integrity sha512-HNQxeQZxNf9Ky3r8gFuwTZOk11XGxCm+K6m2KWd9dbb6UQAVlWYp1W8Ct+YoNl9q3wA/OK9X/tBeY6bYoAeN9A==
+  dependencies:
+    got "^11.8.1"
+
 "@wdio/utils@7.3.0":
   version "7.3.0"
   resolved "https://registry.yarnpkg.com/@wdio/utils/-/utils-7.3.0.tgz#3b3d091c33b13b2eb6cbd2f2037e19b1b3315606"
@@ -2346,6 +2363,14 @@
   dependencies:
     "@wdio/logger" "7.0.0"
     "@wdio/types" "7.2.1"
+
+"@wdio/utils@7.5.2":
+  version "7.5.2"
+  resolved "https://registry.yarnpkg.com/@wdio/utils/-/utils-7.5.2.tgz#96d01882e2286080ae81b129ac09d7fc0d178550"
+  integrity sha512-Z+pe8LdCNyIGubO68xoTp1yG7MI8ejhizRy1MlGokoz3+NK3lsiFLz8brr8wp1chNBONDAUF6K15GjgJrwEOQQ==
+  dependencies:
+    "@wdio/logger" "7.4.2"
+    "@wdio/types" "7.5.2"
 
 "@webassemblyjs/ast@1.9.0":
   version "1.9.0"
