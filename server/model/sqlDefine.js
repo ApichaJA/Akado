@@ -13,6 +13,12 @@ const createUser = conn.define('USER', {
     last_name: {
         type: Seq.STRING
     },
+    email: {
+        type: Seq.STRING
+    },
+    phone:{
+        type: Seq.STRING
+    },
     type:{
         type: Seq.STRING
     },
@@ -25,12 +31,6 @@ const createMember = conn.define('MEMBER', {
     user_user_id:{
         type: Seq.INTEGER,
         primaryKey: true
-    },
-    email: {
-        type: Seq.STRING
-    },
-    phone:{
-        type: Seq.STRING
     },
 },{
     freezeTableName: true,

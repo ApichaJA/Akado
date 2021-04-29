@@ -13,7 +13,7 @@ conn.authenticate()
     .catch(() => console.log('error: ', err))
 
 //Setup Server Port
-const PORT = process.env.PORT || 5050
+const PORT = process.env.PORT || 5000
 
 //Use Middleware
 app.use(morgan("common"))
