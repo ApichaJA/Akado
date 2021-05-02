@@ -2,10 +2,10 @@
   "name": "k-dorm",
   "version": "1.0.0",
   "description": "For K-dorm Project",
-  "main": "server.js",
+  "main": "index.js",
   "scripts": {
     "test": "test",
-    "start": "node server.js"
+    "start": "node index.js"
   },
   "author": "Null Pointer",
   "license": "ISC",
