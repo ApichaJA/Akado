@@ -5,20 +5,13 @@ const morgan = require("morgan")
 const helmet = require("helmet")
 const cors = require("cors")
 const bodyParser = require("body-parser")
-const hotelJson = require("./model/json/72572")
 
-const conn = require("./config/database")
 const apiRouter = require("./presenter/routes/api")
 const userRouter = require("./presenter/routes/user")
 const createUserRouter = require("./presenter/routes/createUser")
 const hostelRouter = require("./presenter/routes/hostel")
 
 const app = express()
-
-conn
-  .authenticate()
-  .then(() => console.log("Database Connected"))
-  .catch(() => console.log("error: ", err))
 
 // Setup Server Port
 const PORT = process.env.PORT || 5000
@@ -38,11 +31,6 @@ app.use(bodyParser.urlencoded({ extended: false }))
 
 // parse application/json
 app.use(bodyParser.json())
-
-// Define routes
-app.get("/", (req, res) => {
-  res.json(hotelJson.Reviews)
-})
 
 app.use("/api.akado/v1", apiRouter)
 app.use("/api.akado/v1", userRouter)

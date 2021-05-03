@@ -5,14 +5,15 @@ const router = require("express").Router()
 const conn = require("../../config/database")
 const db = require("../../model/sqlDefine")
 
-router.post("/getAllHostel", async (req, res) => {
+router.get("/getAllHostel", async (req, res) => {
   const getAllHostel = await db.tbHostel.findAll()
   if (getAllHostel === null) {
     res.status(404).send("Cannot get Hostel")
   } else {
     res.send(getAllHostel)
   }
-}),
+})
+
   /* ---------------------------------------------------------------------- */
 
 /* get getOwnerHostel */
