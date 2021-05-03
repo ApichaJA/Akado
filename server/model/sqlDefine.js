@@ -133,6 +133,29 @@ const tbLocation = conn.define(
   )
   tbAdmin.removeAttribute("id")
 
+
+  const tbBooking = conn.define(
+    "BOOKING",
+    {
+      booking_id: {
+        type: Seq.INTEGER,
+        autoIncrement: true,
+        primaryKey: true,
+      },
+      price: { type: Seq.STRING },
+      deposit: { type: Seq.STRING },
+      room_room_id: { type: Seq.STRING },
+      user_user_id: { type: Seq.STRING },
+      date_check_in: { type: Seq.DOUBLE },
+      date_check_out: { type: Seq.DOUBLE },
+      hostel_name: { type: Seq.DOUBLE }
+    },
+    {
+      freezeTableName: true,
+    }
+  )
+  tbAdmin.removeAttribute("id")
+
 module.exports = {
   tbUser,
   tbMember,
@@ -140,4 +163,5 @@ module.exports = {
   tbHostel,
   tbLocation,
   tbRoom,
+  tbBooking,
 }
