@@ -10,14 +10,14 @@ router.get("/getAllHostel", async (req, res) => {
   if (getAllHostel === null) {
     res.status(404).send("Cannot get Hostel")
   } else {
-    res.send(getAllHostel)
+    res.status(200).send(getAllHostel)
   }
 })
 
   /* ---------------------------------------------------------------------- */
 
 /* get getOwnerHostel */
-router.post("/getOwnerHostel", async (req, res) => {
+router.get("/getOwnerHostel", async (req, res) => {
   const getOwnerHostel = await db.tbHostel.findByPk(req.body.hostel_id)
   if (getOwnerHostel === null) {
     res.status(404).send("Not found Owner Hostel")
