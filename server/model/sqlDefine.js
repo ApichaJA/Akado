@@ -24,6 +24,9 @@ const tbUser = conn.define(
     type: {
       type: Seq.STRING,
     },
+    password: {
+      type: Seq.STRING
+    }
   },
   {
     freezeTableName: true,

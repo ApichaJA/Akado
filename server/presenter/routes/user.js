@@ -16,7 +16,7 @@ router.post("/getUser", async (req, res) => {
 /* ---------------------------------------------------------------------- */
 
 /* get All User Data */
-router.post("/getAllUser", async (req, res) => {
+router.get("/getAllUser", async (req, res) => {
   const getAllUser = await db.tbUser.findAll()
   if (getAllUser === null) {
     res.status(404).send("Not found User")

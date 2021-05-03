@@ -17,32 +17,49 @@
     <section class="slide-box space-y-4 max-w-full">
       <h1 class="section-headline">Recommended Hotels</h1>
       <client-only>
-        <Slide />
+        <Slide :data="hotels" />
       </client-only>
     </section>
 
     <section class="slide-box space-y-4 max-w-full">
       <h1 class="section-headline">Hot Deals</h1>
       <client-only>
-        <Slide />
+        <Slide :data="hotels" />
       </client-only>
+
+      <div v-for="(item, i) in hotels" :key="i">
+        {{ item }}
+      </div>
     </section>
   </section>
 </template>
 
 <script>
-import { mapGetters } from "vuex"
-
 export default {
   components: {
     Slide: () => import("@/components/postSlide"),
     searchBox: () => import("@/components/searchBox"),
   },
   data() {
-    return {}
+    return {
+      hotels: null,
+    }
   },
-  computed: {
-    ...mapGetters("hotels", ["getHotels"]),
+  created() {
+    this.getHotels()
+  },
+  methods: {
+    async getHotels() {
+      try {
+        const { data } = await this.$axios.get(
+          "http://localhost:5000/api.akado/v1/getAllHostel"
+        )
+
+        this.hotels = data
+      } catch (e) {
+        console.error(e)
+      }
+    },
   },
 }
 </script>

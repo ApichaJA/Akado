@@ -1,67 +1,26 @@
 <template>
   <splide :options="options" class="max-w-4xl">
-    <splide-slide>
-      <nuxt-link :to="'/'" class="slide-img">
+    <splide-slide v-for="(item, i) in data" :key="i">
+      <nuxt-link :to="`/hostel/${item.hostel_id}`" class="slide-img">
         <img
           src="https://mpics.mgronline.com/pics/Images/563000009856102.JPEG"
         />
-        <div class="slide-title">Belmond Hotel Cipriani, Venice.</div>
-      </nuxt-link>
-    </splide-slide>
-    <splide-slide>
-      <nuxt-link :to="'/'" class="slide-img">
-        <img
-          src="https://exp.cdn-hotels.com/hotels/9000000/8340000/8332100/8332098/cec73658_z.jpg?impolicy=fcrop&w=500&h=333&q=medium"
-        />
-        <div class="slide-title">Crown Towers Melbourne, Australia.</div>
-      </nuxt-link>
-    </splide-slide>
-    <splide-slide>
-      <nuxt-link :to="'/'" class="slide-img">
-        <img
-          src="http://www.thaiticketmajor.com/variety/img_news/title/original1/2488/11488/title_ttmnews_11488-20190529124523.jpg"
-        />
-        <div class="slide-title">The Darling, Pyrmont, Australia.</div>
-      </nuxt-link>
-    </splide-slide>
-    <splide-slide>
-      <nuxt-link :to="'/'" class="slide-img">
-        <img
-          src="https://mpics.mgronline.com/pics/Images/562000008632302.JPEG"
-        />
-        <div class="slide-title">Faena Hotel Miami Beach.</div>
-      </nuxt-link>
-    </splide-slide>
-    <splide-slide>
-      <nuxt-link :to="'/'" class="slide-img">
-        <img
-          src="https://assets.brandinside.asia/uploads/2020/03/34386191_2039059029689251_4044904219738636288_o.jpg"
-        />
-        <div class="slide-title">Fairmont Grand Del Mar, San Diego.</div>
-      </nuxt-link>
-    </splide-slide>
-    <splide-slide>
-      <nuxt-link :to="'/'" class="slide-img">
-        <img
-          src="https://dynamic-media-cdn.tripadvisor.com/media/photo-o/1c/df/18/a9/entrance.jpg?w=600&h=300&s=1"
-        />
-        <div class="slide-title">
-          Four Seasons Hotel Gresham Palace Budapest.
-        </div>
-      </nuxt-link>
-    </splide-slide>
-    <splide-slide>
-      <nuxt-link :to="'/'" class="slide-img">
-        <img
-          src="https://i0.wp.com/www.hotelthailandtomorrow.com/wp-content/uploads/2019/09/ASAI-Chinatown_Exterior-e1567570743818.jpg?resize=640%2C386"
-        />
-        <div class="slide-title">Four Seasons Resort Bali at Sayan.</div>
+        <div class="slide-title antialiased">{{ item.name }}</div>
       </nuxt-link>
     </splide-slide>
   </splide>
 </template>
 <script>
 export default {
+  props: {
+    data: {
+      type: [Object, Array],
+      require: true,
+      default() {
+        return null
+      },
+    },
+  },
   data() {
     return {
       options: {
@@ -93,7 +52,7 @@ export default {
 }
 
 .slide-img:hover .slide-title {
-  @apply mb-0;
+  @apply mb-0 font-light;
 }
 
 .slide-img img {
