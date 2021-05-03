@@ -23,6 +23,7 @@
     "@tailwindcss/line-clamp": "^0.2.0",
     "buefy": "^0.9.7",
     "concurrently": "^6.0.1",
+    "cookie-parser": "^1.4.5",
     "core-js": "^3.9.1",
     "nuxt": "^2.15.3",
     "nuxt-buefy": "^0.4.7"
