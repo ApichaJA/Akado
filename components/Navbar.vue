@@ -10,7 +10,7 @@
     </div>
     <div class="primary-nav">
       <div class="wrap-container flex justify-center items-center py-12">
-        <h1 class="logo">K-DORM</h1>
+        <h1 class="logo">{{ this.$store.getters['page/getPage'] || 'K-DORM' }}</h1>
       </div>
       <div class="page-title">
           Book what's you like!

@@ -3,7 +3,7 @@
     <!-- Include NavBar -->
     <NavBar />
 
-    <section class="min-h-screen max-w-full w-full grid grid-cols-1 px-6 py-24">
+    <section class="min-h-screen max-w-full w-full grid grid-cols-1">
       <Nuxt />
     </section>
   </main>
