@@ -69,6 +69,8 @@ export default {
     },
   },
 
+  serverMiddleware: [{ path: "/connect", handler: "@/server/index.js" }],
+
   // Content module configuration: https://go.nuxtjs.dev/config-content
   content: {},
 

@@ -3,9 +3,9 @@
   "version": "1.0.0",
   "private": true,
   "scripts": {
-    "dev": "concurrently --kill-others \"nodemon ./server/index.js\" \"nuxt\"",
+    "dev": "nuxt",
     "build": "nuxt build",
-    "start": "concurrently --kill-others \"nodemon ./server/index.js\" \"nuxt start\"",
+    "start": "nuxt start",
     "generate": "nuxt generate",
     "lint:js": "eslint --ext \".js,.vue\" --ignore-path .gitignore .",
     "lint:style": "stylelint \"**/*.{vue,css}\" --ignore-path .gitignore",

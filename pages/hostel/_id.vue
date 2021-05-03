@@ -37,7 +37,7 @@ export default {
   },
   async asyncData({ params, $http }) {
     const hostel = await $http.$get(
-      `http://localhost:5000/api.akado/v1/hostel/${params.id}`
+      `/connect/api.akado/v1/hostel/${params.id}`
     )
 
     return { hostel }

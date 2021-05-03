@@ -51,3 +51,5 @@ app.use("/api.akado/v1", bookinglRouter)
 app.listen(PORT, () => {
   console.log(`Back-End listening at: ${PORT}`)
 })
+
+module.exports = app

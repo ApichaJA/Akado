@@ -45,7 +45,7 @@ export default {
     async getHotels() {
       try {
         const { data } = await this.$axios.get(
-          "http://localhost:5000/api.akado/v1/getAllHostel"
+          "/connect/api.akado/v1/getAllHostel"
         )
 
         this.hotels = data

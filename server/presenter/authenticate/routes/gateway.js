@@ -1,3 +1,4 @@
+/* eslint-disable */
 const router = require("express").Router()
 const jwt = require("jsonwebtoken")
 const conn = require("../../../config/database")
