@@ -1,12 +1,17 @@
 // Main presenter configuration
+/* eslint-disable */
 const express = require("express")
 const morgan = require("morgan")
 const helmet = require("helmet")
 const cors = require("cors")
 const bodyParser = require("body-parser")
-const hotelJson = require("../model/json/72572")
+const hotelJson = require("./model/json/72572")
 
-const conn = require("../config/database")
+const conn = require("./config/database")
+const apiRouter = require("./presenter/routes/api")
+const userRouter = require("./presenter/routes/user")
+const createUserRouter = require("./presenter/routes/createUser")
+const hostelRouter = require("./presenter/routes/hostel")
 
 const app = express()
 
@@ -39,15 +44,10 @@ app.get("/", (req, res) => {
   res.json(hotelJson.Reviews)
 })
 
-const apiRouter = require("./routes/api")
-const userRouter = require("./routes/user")
-const createUserRouter = require("./routes/createUser")
-const hostelRouter = require("./routes/hostel")
-
-app.use("/api.akado/v1", apiRouter.router)
-app.use("/api.akado/v1", userRouter.router)
-app.use("/api.akado/v1", createUserRouter.router)
-app.use("/api.akado/v1", hostelRouter.router)
+app.use("/api.akado/v1", apiRouter)
+app.use("/api.akado/v1", userRouter)
+app.use("/api.akado/v1", createUserRouter)
+app.use("/api.akado/v1", hostelRouter)
 
 // Listen
 app.listen(PORT, () => {

@@ -1,29 +1,29 @@
-const express = require("express")
-const router = express.Router()
+const router = require("express").Router()
 
 const conn = require("../../config/database")
 const db = require("../../model/sqlDefine")
 
-
-  /*Create User*/
-  router.post("/createUser", async (req, res) => {
-    const userData = {
-        first_name: "Apichaddddd",
-        last_name: "Junyatanakron",
-        email: 'jun@gmail.com',
-        phone: '0925055645',
-        type: "admin",
+/* Create User */
+router.post("/createUser", async (req, res) => {
+  const userData = {
+    first_name: "Apichaddddd",
+    last_name: "Junyatanakron",
+    email: "jun@gmail.com",
+    phone: "0925055645",
+    type: "admin",
   }
-  let {first_name, last_name, email, phone, type} = userData;
-  const onCreateUser = await db.tbUser.create({
+  const { first_name, last_name, email, phone, type } = userData
+  const onCreateUser = await db.tbUser
+    .create({
       first_name,
       last_name,
       email,
       phone,
-      type
-  }).then(res.status(201))
-  .catch((err) => console.log(err))
-  /*Then Create Role FROM User*/
+      type,
+    })
+    .then(res.status(201))
+    .catch((err) => console.log(err))
+  /* Then Create Role FROM User */
   if (type === "member") {
     db.tbMember
       .create({
@@ -40,7 +40,6 @@ const db = require("../../model/sqlDefine")
       .catch((err) => console.log(err))
   }
 })
-/*----------------------------------------------------------------------*/
+/* ---------------------------------------------------------------------- */
 
-exports.router = router;
-
+module.exports = router
