@@ -14,6 +14,22 @@ router.get("/getAllHostel", async (req, res) => {
   }
 })
 
+router.get("/hostel/:id", async (req, res) => {
+  const id = req.params.id || ''
+
+  const data = await db.tbHostel.findOne({
+    where: {
+      hostel_id: id
+    }
+  }).catch(e => console.error(e))
+
+  if (data) {
+    res.status(200).json(data)
+  } else {
+    res.status(500).send()
+  }
+})
+
   /* ---------------------------------------------------------------------- */
 
 /* get getOwnerHostel */
