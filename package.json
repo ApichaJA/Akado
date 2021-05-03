@@ -3,9 +3,9 @@
   "version": "1.0.0",
   "private": true,
   "scripts": {
-    "dev": "concurrently --kill-others \"nodemon ./server/presenter/index.js\" \"nuxt\"",
+    "dev": "concurrently --kill-others \"nodemon ./server/index.js\" \"nuxt\"",
     "build": "nuxt build",
-    "start": "concurrently --kill-others \"nodemon ./server/presenter/index.js\" \"nuxt start\"",
+    "start": "concurrently --kill-others \"nodemon ./server/index.js\" \"nuxt start\"",
     "generate": "nuxt generate",
     "lint:js": "eslint --ext \".js,.vue\" --ignore-path .gitignore .",
     "lint:style": "stylelint \"**/*.{vue,css}\" --ignore-path .gitignore",
@@ -18,9 +18,14 @@
     "@nuxtjs/auth-next": "5.0.0-1616003482.75c20e6",
     "@nuxtjs/axios": "^5.13.1",
     "@nuxtjs/pwa": "^3.3.5",
+    "@splidejs/vue-splide": "^0.3.5",
+    "@tailwindcss/aspect-ratio": "^0.2.0",
+    "@tailwindcss/line-clamp": "^0.2.0",
+    "buefy": "^0.9.7",
     "concurrently": "^6.0.1",
     "core-js": "^3.9.1",
-    "nuxt": "^2.15.3"
+    "nuxt": "^2.15.3",
+    "nuxt-buefy": "^0.4.7"
   },
   "devDependencies": {
     "@nuxtjs/eslint-config": "^6.0.0",
@@ -32,6 +37,7 @@
     "@wdio/mocha-framework": "^7.2.1",
     "@wdio/spec-reporter": "^7.2.1",
     "@wdio/sync": "^7.2.1",
+    "autoprefixer": "9",
     "babel-eslint": "^10.1.0",
     "eslint": "^7.22.0",
     "eslint-config-prettier": "^8.1.0",
@@ -39,11 +45,12 @@
     "eslint-plugin-prettier": "^3.3.1",
     "eslint-plugin-vue": "^7.7.0",
     "eslint-plugin-wdio": "^7.0.0",
-    "postcss": "^8.2.9",
+    "postcss": "7",
     "prettier": "^2.2.1",
     "stylelint": "^13.12.0",
     "stylelint-config-prettier": "^8.0.2",
     "stylelint-config-standard": "^21.0.0",
+    "tailwindcss": "npm:@tailwindcss/postcss7-compat",
     "webdriverio": "^7.2.1"
   }
 }
