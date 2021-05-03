@@ -90,4 +90,3 @@ sw.*
 
 # Vim swap files
 *.swp
-server/config/database.js
