@@ -2285,13 +2285,13 @@
   dependencies:
     "@wdio/utils" "7.3.0"
 
-"@wdio/reporter@7.3.0":
-  version "7.3.0"
-  resolved "https://registry.yarnpkg.com/@wdio/reporter/-/reporter-7.3.0.tgz#b5826aaf52776349a1acb8c6cc53ba3b3ec39a11"
-  integrity sha512-jkT6slmjPlnisWblqLmmEEB0wlF8q6aND151pAZm81vezuFLbkVPxY0mdSpKQ8iOUUdckOjygLEWC0fnic7yew==
+"@wdio/reporter@7.5.3":
+  version "7.5.3"
+  resolved "https://registry.yarnpkg.com/@wdio/reporter/-/reporter-7.5.3.tgz#2e31c4499fb94bea0f9a78c53a6acad8aeb4fec8"
+  integrity sha512-gR2mjMKqYjTYMndYkq3WOBodeGbymRaXCeGvPW5FFXADEkymMzpt2Grw7enHFJrxJq5lJKyd51wItRAONMjhvQ==
   dependencies:
     "@types/cucumber" "^6.0.1"
-    "@wdio/types" "7.2.1"
+    "@wdio/types" "7.5.3"
     fs-extra "^9.0.0"
 
 "@wdio/runner@7.3.0":
@@ -2308,14 +2308,14 @@
     webdriver "7.3.0"
     webdriverio "7.3.0"
 
-"@wdio/spec-reporter@^7.2.1":
-  version "7.3.0"
-  resolved "https://registry.yarnpkg.com/@wdio/spec-reporter/-/spec-reporter-7.3.0.tgz#95d72a5876b0dcab2450079b5ece12983463718c"
-  integrity sha512-3CCbw/mc6GS7GySlJjETyCVf5O+E8lMstZdx2rS289OMtwAT8Yr3nlO+9qMNDtO6wSAg1yzevhNGyfIAky6Ocg==
+"@wdio/spec-reporter@^7.5.3":
+  version "7.5.3"
+  resolved "https://registry.yarnpkg.com/@wdio/spec-reporter/-/spec-reporter-7.5.3.tgz#de174dea21a2167ff1ed0528db6c227c202513ff"
+  integrity sha512-2i2kjBP5+qfe2IVJESPbCVo6idPuQsBdktDcFh7ZkFppfZNARNHMaFY9zxCIoB47L5qtTuIe60I1+BoQ/3Xw4A==
   dependencies:
     "@types/easy-table" "^0.0.32"
-    "@wdio/reporter" "7.3.0"
-    "@wdio/types" "7.2.1"
+    "@wdio/reporter" "7.5.3"
+    "@wdio/types" "7.5.3"
     chalk "^4.0.0"
     easy-table "^1.1.1"
     pretty-ms "^7.0.0"
@@ -2336,6 +2336,13 @@
   version "7.2.1"
   resolved "https://registry.yarnpkg.com/@wdio/types/-/types-7.2.1.tgz#fe1070251b524c9215d3211eeefc083b16d2fdae"
   integrity sha512-05+nxO2I/9asQvjgTT2ZteDi7PguAruoOw1Vu8zAVqE+yP5YQxW1CX3galRost8UlQ6Vft/RgmsYLabdxJzzag==
+  dependencies:
+    got "^11.8.1"
+
+"@wdio/types@7.5.3":
+  version "7.5.3"
+  resolved "https://registry.yarnpkg.com/@wdio/types/-/types-7.5.3.tgz#9239b00fd2c2ef75f7a6bda965b5be0855d97f7e"
+  integrity sha512-jmumhKBhNDABnpmrshYLEcdE9WoP5tmynsDNbDABlb/W8FFiLySQOejukhYIL9CLys4zXerV3/edks0SCzHOiQ==
   dependencies:
     got "^11.8.1"
 
