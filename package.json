@@ -15,7 +15,7 @@
   "dependencies": {
     "@nuxt/content": "^1.14.0",
     "@nuxt/http": "^0.6.4",
-    "@nuxtjs/auth-next": "5.0.0-1616003482.75c20e6",
+    "@nuxtjs/auth-next": "5.0.0-1618898588.9655d0e",
     "@nuxtjs/axios": "^5.13.1",
     "@nuxtjs/pwa": "^3.3.5",
     "@splidejs/vue-splide": "^0.3.5",
@@ -23,6 +23,7 @@
     "@tailwindcss/line-clamp": "^0.2.0",
     "buefy": "^0.9.7",
     "concurrently": "^6.0.1",
+    "cookie-parser": "^1.4.5",
     "core-js": "^3.9.1",
     "nuxt": "^2.15.3",
     "nuxt-buefy": "^0.4.7"

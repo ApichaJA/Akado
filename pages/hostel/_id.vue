@@ -5,8 +5,26 @@
       :isFluid="true"
     />
 
-    <div class="box max-w-4xl w-full">
-      {{ hostel }}
+    <div class="box max-w-4xl w-full flex flex-row items-center font-sans space-x-2 font-semibold">
+      <div class="flex items-center space-x-1">
+        <b-icon icon="currency-usd" size="is-small"></b-icon>
+        <span>{{ hostel.min_price }}</span>
+      </div>
+      <span>-</span>
+      <div class="flex items-center space-x-1">
+        <span class="flex items-center -space-x-2">
+        <b-icon icon="currency-usd" size="is-small"></b-icon>
+        <b-icon icon="currency-usd" size="is-small"></b-icon>
+        </span>
+        <span>{{ hostel.max_price }}</span>
+      </div>
+    </div>
+
+    <div class="max-w-4xl w-full grid grid-cols-1 gap-y-4">
+      <h1 class="font-bold">Available Rooms</h1>
+      <div class="box p-6">
+        test
+      </div>
     </div>
   </section>
 </template>
