@@ -24,7 +24,7 @@ router.get("/hostel/:id", async (req, res) => {
   }).catch(e => console.error(e))
 
   if (data) {
-    res.status(200).send(data)
+    res.status(200).json(data)
   } else {
     res.status(500).send()
   }

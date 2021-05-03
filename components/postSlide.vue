@@ -1,7 +1,10 @@
 <template>
   <splide :options="options" class="max-w-4xl">
     <splide-slide v-for="(item, i) in data" :key="i">
-      <nuxt-link :to="`/hostel/${item.hostel_id}`" class="slide-img">
+      <nuxt-link
+        :to="`/hostel/${item.hostel_id}`"
+        class="slide-img"
+      >
         <img
           src="https://mpics.mgronline.com/pics/Images/563000009856102.JPEG"
         />
@@ -19,7 +22,7 @@ export default {
       default() {
         return null
       },
-    },
+    }
   },
   data() {
     return {
