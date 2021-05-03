@@ -1,8 +1,7 @@
-const express = require("express").Router()
+const router = require("express").Router()
 
 const conn = require("../../config/database")
 const db = require("../../model/sqlDefine")
-const router = require("./api")
 
 /* get User Data from user_id */
 router.post("/getUser", async (req, res) => {
@@ -16,7 +15,7 @@ router.post("/getUser", async (req, res) => {
 /* ---------------------------------------------------------------------- */
 
 /* get All User Data */
-router.post("/getAllUser", async (req, res) => {
+router.get("/getAllUser", async (req, res) => {
   const getAllUser = await db.tbUser.findAll()
   if (getAllUser === null) {
     res.status(404).send("Not found User")
@@ -26,5 +25,21 @@ router.post("/getAllUser", async (req, res) => {
 })
 
 /* ---------------------------------------------------------------------- */
+
+/* Authenticate */
+router.post("/authUser", async (req, res) => {
+    const authUser = await db.tbUser.findAll({where: {
+        email: req.body.email,
+        password: req.body.password
+      }
+    })
+    if (authUser.length < 1) {
+      res.status(404).send("Wrong")
+    } else {
+      res.send(authUser)
+    }
+  })
+  
+  /* ---------------------------------------------------------------------- */
 
 module.exports = router

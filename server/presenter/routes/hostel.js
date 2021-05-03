@@ -14,16 +14,98 @@ router.get("/getAllHostel", async (req, res) => {
   }
 })
 
-  /* ---------------------------------------------------------------------- */
-
 /* get getOwnerHostel */
 router.post("/getOwnerHostel", async (req, res) => {
   const getOwnerHostel = await db.tbHostel.findByPk(req.body.hostel_id)
   if (getOwnerHostel === null) {
-    res.status(404).send("Not found Owner Hostel")
+    res.status(404).send("Not found Hostel")
   } else {
     res.send(getOwnerHostel)
   }
+})
+
+/* ---------------------------------------------------------------------- */
+
+/* get AllRoom */
+
+router.get("/getAllRoom", async (req, res) => {
+  const getAllRoom = await db.tbRoom.findAll()
+  if (getAllRoom === null) {
+    res.status(404).send("Cannot get Hostel")
+  } else {
+    res.send(getAllRoom)
+  }
+})
+
+/* ---------------------------------------------------------------------- */
+
+/* get Room from hostel_id */
+router.post("/getRoom", async (req, res) => {
+  const getRoom = await db.tbRoom.findAll({
+    where: {
+      hostel_hostel_id: req.body.hostel_id,
+    },
+  })
+  if (getRoom === null) {
+    res.status(404).send("Not found Owner Hostel")
+  } else {
+    res.send(getRoom)
+  }
+})
+
+/* ---------------------------------------------------------------------- */
+
+/* create HOSTEL */
+router.post("/createHostel", async (req, res) => {
+  const hostelData = {
+    name: req.body.name,
+    phone: req.body.phone,
+    phone_home: req.body.phone_home,
+    address: req.body.address,
+    latitude: req.body.latitude,
+    longtitude: req.body.longtitude,
+    min_price: req.body.min_price,
+    max_price: req.body.max_price,
+    gender: req.body.gender,
+    image: req.body.image,
+  }
+  const {
+    name,
+    phone,
+    phone_home,
+    address,
+    latitude,
+    longtitude,
+    min_price,
+    max_price,
+    gender,
+    image,
+  } = hostelData
+  const onCreateHT = await db.tbHostel
+  .create({
+    name,
+    phone,
+    phone_home,
+    address,
+    latitude,
+    longtitude,
+    min_price,
+    max_price,
+    gender,
+    image,
+  })
+    .then(res.status(201))
+    .catch((err) => {
+        res.send(err)
+    })
+    db.tbAdmin
+    .update({hostel_hostel_id: onCreateHT.hostel_id}, {
+      where: {
+        user_user_id: req.body.user_id
+        }
+    })
+    .then(res.send(onCreateHT))
+    .catch((err) => res.send(err))
 })
 
 /* ---------------------------------------------------------------------- */

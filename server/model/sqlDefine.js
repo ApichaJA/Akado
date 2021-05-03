@@ -21,6 +21,9 @@ const tbUser = conn.define(
     phone: {
       type: Seq.STRING,
     },
+    password: {
+        type: Seq.STRING,
+      },
     type: {
       type: Seq.STRING,
     },
@@ -52,6 +55,9 @@ const tbAdmin = conn.define(
       type: Seq.INTEGER,
       primaryKey: true,
     },
+    hostel_hostel_id: {
+      type: Seq.INTEGER,
+    },
   },
   {
     freezeTableName: true,
@@ -64,6 +70,7 @@ const tbHostel = conn.define(
   {
     hostel_id: {
       type: Seq.INTEGER,
+      autoIncrement: true,
       primaryKey: true,
     },
     name: { type: Seq.STRING },
@@ -75,7 +82,8 @@ const tbHostel = conn.define(
     min_price: { type: Seq.DOUBLE },
     max_price: { type: Seq.DOUBLE },
     gender: { type: Seq.STRING },
-    verify: { type: Seq.STRING }
+    image: { type: Seq.STRING },
+    verify: { type: Seq.TINYINT }
   },
   {
     freezeTableName: true,
@@ -83,9 +91,50 @@ const tbHostel = conn.define(
 )
 tbAdmin.removeAttribute("id")
 
+const tbLocation = conn.define(
+    "LOCATION",
+    {
+        location_id: {
+        type: Seq.INTEGER,
+        primaryKey: true,
+      },
+      name: { type: Seq.STRING },
+      address: { type: Seq.STRING },
+      latitude: { type: Seq.DOUBLE },
+      longtitude: { type: Seq.DOUBLE },
+      type: { type: Seq.DOUBLE },
+      image: { type: Seq.STRING },
+    },
+    {
+      freezeTableName: true,
+    }
+  )
+  tbAdmin.removeAttribute("id")
+
+
+
+  const tbRoom = conn.define(
+    "ROOM",
+    {
+      room_id: {
+        type: Seq.INTEGER,
+        primaryKey: true,
+      },
+      hostel_hostel_id: { type: Seq.INTEGER },
+      room_type_type_id: { type: Seq.INTEGER },
+      state: { type: Seq.TINYINT },
+    },
+    {
+      freezeTableName: true,
+    }
+  )
+  tbAdmin.removeAttribute("id")
+
 module.exports = {
   tbUser,
   tbMember,
   tbAdmin,
   tbHostel,
+  tbLocation,
+  tbRoom,
 }
