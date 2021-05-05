@@ -2,8 +2,6 @@
   <section class="flex flex-col items-center my-24">
     <div class="box max-w-xl w-full p-6">
       <form class="grid grid-cols-1 gap-y-3" @submit.prevent="login">
-        {{ $auth.loggedIn }}
-        {{ $auth.token }}
         <b-field label="Email">
           <b-input
             v-model="theForm.email"

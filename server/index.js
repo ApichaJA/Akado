@@ -19,9 +19,6 @@ const authService = require('./presenter/authenticate/index')
 
 const app = express()
 
-// Setup Server Port
-const PORT = process.env.SERVER_PORT || 5000
-
 // Use Middleware
 app.use(morgan("common"))
 app.use(helmet())
@@ -46,10 +43,5 @@ app.use("/api.akado/v1", createUserRouter)
 app.use("/api.akado/v1", hostelRouter)
 app.use("/api.akado/v1", locationlRouter)
 app.use("/api.akado/v1", bookinglRouter)
-
-// Listen
-app.listen(3001, () => {
-  console.log(`Back-End listening at: ${PORT}`)
-})
 
 module.exports = app

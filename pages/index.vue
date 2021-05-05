@@ -2,34 +2,34 @@
   <section
     class="wrap-container mx-auto flex flex-col space-y-16 place-items-start w-full px-4 py-24"
   >
-    <searchBox />
-
     <Hero :data="{ name: 'DUSIT THANI', address: 'Phuket, Thailand' }" />
+
+    <searchBox />
 
     <section class="slide-box space-y-4 max-w-full">
       <h1 class="section-headline">Recommended Hotels</h1>
-      <client-only>
+      <!-- <client-only>
         <Slide :data="hotels" />
-      </client-only>
+      </client-only> -->
     </section>
 
     <section class="slide-box space-y-4 max-w-full">
       <h1 class="section-headline">Hot Deals</h1>
-      <client-only>
+      <!-- <client-only>
         <Slide :data="hotels" />
-      </client-only>
+      </client-only> -->
     </section>
   </section>
 </template>
 
 <script>
-import { mapActions } from 'vuex'
-
+import { mapActions } from "vuex"
+/* eslint-disable */
 export default {
   components: {
     Slide: () => import("@/components/postSlide"),
     searchBox: () => import("@/components/searchBox"),
-    Hero: () => import("@/components/headlineHero")
+    Hero: () => import("@/components/headlineHero"),
   },
   data() {
     return {
@@ -38,10 +38,10 @@ export default {
   },
   created() {
     this.getHotels()
-    this.setPage('K-DORM')
+    this.setPage("K-DORM")
   },
   methods: {
-    ...mapActions("page", ['setPage']),
+    ...mapActions("page", ["setPage"]),
     async getHotels() {
       try {
         const { data } = await this.$axios.get(
