@@ -12,8 +12,8 @@ const apiRouter = require("./presenter/routes/api")
 const userRouter = require("./presenter/routes/user")
 const createUserRouter = require("./presenter/routes/createUser")
 const hostelRouter = require("./presenter/routes/hostel")
-const locationlRouter = require("./presenter/routes/location")
-const bookinglRouter = require("./presenter/routes/booking")
+const locationRouter = require("./presenter/routes/location")
+const bookingRouter = require("./presenter/routes/booking")
 
 const authService = require('./presenter/authenticate/index')
 
@@ -44,8 +44,8 @@ app.use("/api.akado/v1", apiRouter)
 app.use("/api.akado/v1", userRouter)
 app.use("/api.akado/v1", createUserRouter)
 app.use("/api.akado/v1", hostelRouter)
-app.use("/api.akado/v1", locationlRouter)
-app.use("/api.akado/v1", bookinglRouter)
+app.use("/api.akado/v1", locationRouter)
+app.use("/api.akado/v1", bookingRouter)
 
 // Listen
 app.listen(3001, () => {

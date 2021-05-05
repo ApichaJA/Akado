@@ -92,7 +92,7 @@ const tbHostel = conn.define(
     freezeTableName: true,
   }
 )
-tbAdmin.removeAttribute("id")
+tbHostel.removeAttribute("id")
 
 const tbLocation = conn.define(
     "LOCATION",
@@ -112,7 +112,7 @@ const tbLocation = conn.define(
       freezeTableName: true,
     }
   )
-  tbAdmin.removeAttribute("id")
+  tbLocation.removeAttribute("id")
 
 
 
@@ -131,7 +131,7 @@ const tbLocation = conn.define(
       freezeTableName: true,
     }
   )
-  tbAdmin.removeAttribute("id")
+  tbRoom.removeAttribute("id")
 
 
   const tbBooking = conn.define(
@@ -154,7 +154,50 @@ const tbLocation = conn.define(
       freezeTableName: true,
     }
   )
-  tbAdmin.removeAttribute("id")
+  tbBooking.removeAttribute("id")
+
+
+  const tbRating_Location = conn.define(
+    "RATING_LOCATION",
+    {
+      rate_id: {
+        type: Seq.INTEGER,
+        autoIncrement: true,
+        primaryKey: true,
+      },
+      user_user_id: { type: Seq.INTEGER },
+      location_location_id: { type: Seq.INTEGER },
+      star: { type: Seq.STRING },
+      type: { type: Seq.STRING },
+      comment: { type: Seq.STRING }
+    },
+    {
+      freezeTableName: true,
+    }
+  )
+  tbRating_Location.removeAttribute("id")
+
+
+
+  const tbRating = conn.define(
+    "RATING",
+    {
+      rate_id: {
+        type: Seq.INTEGER,
+        autoIncrement: true,
+        primaryKey: true,
+      },
+      user_user_id: { type: Seq.INTEGER },
+      hostel_hostel_id: { type: Seq.INTEGER },
+      star: { type: Seq.STRING },
+      type: { type: Seq.STRING },
+      comment: { type: Seq.STRING }
+    },
+    {
+      freezeTableName: true,
+    }
+  )
+  tbRating.removeAttribute("id")
 
 module.exports = {
   tbUser,
@@ -164,4 +207,6 @@ module.exports = {
   tbLocation,
   tbRoom,
   tbBooking,
+  tbRating_Location,
+  tbRating,
 }

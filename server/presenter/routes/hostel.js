@@ -4,6 +4,8 @@ const router = require("express").Router()
 
 const conn = require("../../config/database")
 const db = require("../../model/sqlDefine")
+const { QueryTypes } = require('sequelize');
+
 
 router.get("/getAllHostel", async (req, res) => {
   const getAllHostel = await db.tbHostel.findAll()
@@ -14,30 +16,30 @@ router.get("/getAllHostel", async (req, res) => {
   }
 })
 
-router.get("/hostel/:id", async (req, res) => {
-  const id = req.params.id || ''
-
-  const data = await db.tbHostel.findOne({
-    where: {
-      hostel_id: id
+router.post("/getHostel", async (req, res) => {
+  const data = await conn.query(
+    'SELECT * FROM HOSTEL h LEFT OUTER JOIN RATING r\
+    ON (h.hostel_id = r.hostel_hostel_id)\
+    WHERE h.hostel_id = :hostel_id',
+    {
+      replacements: { hostel_id: req.body.hostel_id },
+      type: QueryTypes.SELECT
     }
-  }).catch(e => console.error(e))
+    ).catch(e => res.send(e))
 
-  if (data) {
-    res.status(200).json(data)
-  } else {
-    res.status(500).send()
-  }
-})
+    if (data.length < 1) {
+      res.status(404).send()
+    } else {
+      res.status(200).json(data)
+    }
 
-/* get getOwnerHostel */
-router.get("/getOwnerHostel", async (req, res) => {
-  const getOwnerHostel = await db.tbHostel.findByPk(req.body.hostel_id)
-  if (getOwnerHostel === null) {
-    res.status(404).send("Not found Hostel")
-  } else {
-    res.send(getOwnerHostel)
-  }
+  // const data = await db.tbHostel.findOne({
+  //   where: {
+  //     hostel_id: id
+  //   }
+  // }).catch(e => console.error(e))
+
+
 })
 
 /* ---------------------------------------------------------------------- */
