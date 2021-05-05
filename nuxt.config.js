@@ -70,6 +70,7 @@ export default {
     fullPathRedirect: false,
     strategies: {
       local: {
+        rewriteRedirects: false,
         endpoints: {
           login: {
             url: "/connect/auth/login",
@@ -84,7 +85,7 @@ export default {
         redirect: {
           login: "/login",
           logout: "/",
-          callback: "/control"
+          callback: "/control",
         },
         token: {
           property: "accessToken",

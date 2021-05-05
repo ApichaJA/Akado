@@ -8,15 +8,17 @@
           type="text"
           placeholder="Find your best place"
           class="w-full"
+          required
         />
       </div>
 
       <div class="w-full col-span-2 sm:col-span-1 grid grid-cols-1 gap-y-2">
         <b-field label="Select travel dates">
           <b-datetimepicker
-            placeholder="Type or select a date..."
+            placeholder="Check-in Date"
             icon="calendar-today"
             locale="en-US"
+            required
           >
           </b-datetimepicker>
         </b-field>
@@ -25,9 +27,10 @@
       <div class="w-full col-span-2 sm:col-span-1 grid grid-cols-1 gap-y-2">
         <b-field label="To">
           <b-datetimepicker
-            placeholder="Type or select a date..."
+            placeholder="Check-out Date"
             icon="calendar-today"
             locale="en-US"
+            required
           >
           </b-datetimepicker>
         </b-field>

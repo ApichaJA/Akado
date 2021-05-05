@@ -8,7 +8,6 @@ const { Op } = require("sequelize");
 const KEY = process.env.SECRET_TOKEN || null
 
 const generateUserToken = (account) => {
-  console.log(1);
   return jwt.sign({ user: account.email, type: account.type }, KEY, {
     expiresIn: 86400,
   })
@@ -17,13 +16,12 @@ const generateUserToken = (account) => {
 function authenticateUser(req, res, next) {
   // const authHeader = req.headers["x-access-token"]
   const token = req.headers["authorization"]
-  console.log(token);
+
   if (!token) return res.sendStatus(401)
 
   const accessToken = token.split(' ')[1]
 
   jwt.verify(accessToken, KEY, (err, user) => {
-    console.log(err)
 
     if (err) return res.sendStatus(403)
 
