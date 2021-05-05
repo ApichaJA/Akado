@@ -22,7 +22,7 @@ router.get("/getHostel/:id", async (req, res) => {
     ON (h.hostel_id = r.hostel_hostel_id)\
     WHERE h.hostel_id = :hostel_id',
     {
-      replacements: { hostel_id: req.params.hostel_id },
+      replacements: { hostel_id: req.params.id },
       type: QueryTypes.SELECT
     }
     ).catch(e => res.send(e))
@@ -30,16 +30,8 @@ router.get("/getHostel/:id", async (req, res) => {
     if (data.length < 1) {
       res.status(404).send()
     } else {
-      res.status(200).json(data)
+      res.status(200).json(data[0])
     }
-
-  // const data = await db.tbHostel.findOne({
-  //   where: {
-  //     hostel_id: id
-  //   }
-  // }).catch(e => console.error(e))
-
-
 })
 
 /* ---------------------------------------------------------------------- */

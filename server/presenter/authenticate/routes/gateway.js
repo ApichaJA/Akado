@@ -5,6 +5,8 @@ const conn = require("../../../config/database")
 const db = require("../../../model/sqlDefine")
 const { Op } = require("sequelize");
 
+const authenticateUser = require('./auth')
+
 const KEY = process.env.SECRET_TOKEN || null
 
 const generateUserToken = (account) => {
@@ -13,23 +15,23 @@ const generateUserToken = (account) => {
   })
 }
 
-function authenticateUser(req, res, next) {
-  // const authHeader = req.headers["x-access-token"]
-  const token = req.headers["authorization"]
+// function authenticateUser(req, res, next) {
+//   // const authHeader = req.headers["x-access-token"]
+//   const token = req.headers["authorization"]
 
-  if (!token) return res.sendStatus(401)
+//   if (!token) return res.sendStatus(401)
 
-  const accessToken = token.split(' ')[1]
+//   const accessToken = token.split(' ')[1]
 
-  jwt.verify(accessToken, KEY, (err, user) => {
+//   jwt.verify(accessToken, KEY, (err, user) => {
 
-    if (err) return res.sendStatus(403)
+//     if (err) return res.sendStatus(403)
 
-    req.user = user.user
+//     req.user = user.user
 
-    next()
-  })
-}
+//     next()
+//   })
+// }
 
 // get user
 router.get("/profile", authenticateUser, (req, res) => {
