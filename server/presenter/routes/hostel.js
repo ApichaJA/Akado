@@ -16,13 +16,13 @@ router.get("/getAllHostel", async (req, res) => {
   }
 })
 
-router.post("/getHostel", async (req, res) => {
+router.get("/getHostel/:id", async (req, res) => {
   const data = await conn.query(
     'SELECT * FROM HOSTEL h LEFT OUTER JOIN RATING r\
     ON (h.hostel_id = r.hostel_hostel_id)\
     WHERE h.hostel_id = :hostel_id',
     {
-      replacements: { hostel_id: req.body.hostel_id },
+      replacements: { hostel_id: req.params.hostel_id },
       type: QueryTypes.SELECT
     }
     ).catch(e => res.send(e))
