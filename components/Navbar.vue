@@ -3,8 +3,8 @@
     <div class="top-nav">
       <div class="wrap-container py-4 flex justify-end">
         <div class="links space-x-3">
-          <nuxt-link :to="''">Register</nuxt-link>
-          <nuxt-link :to="''">Log in</nuxt-link>
+          <nuxt-link :to="'/register'">Register</nuxt-link>
+          <nuxt-link :to="'/login'">Log in</nuxt-link>
         </div>
       </div>
     </div>
@@ -52,7 +52,7 @@
   @apply flex flex-nowrap items-center text-base font-medium;
 }
 .main-nav .top-nav .links a:hover {
-  @apply underline;
+  @apply underline text-gray-100;
 }
 
 .main-nav .primary-nav .logo {

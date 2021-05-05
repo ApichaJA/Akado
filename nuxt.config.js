@@ -59,6 +59,39 @@ export default {
     ["nuxt-buefy", { css: true, materialDesignIcons: true }],
   ],
 
+  auth: {
+    redirect: {
+      logout: "/?loggedOut=1",
+      home: "/",
+    },
+    watchLoggedIn: true,
+    localStorage: false,
+    rewriteRedirects: true,
+    fullPathRedirect: false,
+    strategies: {
+      local: {
+        endpoints: {
+          login: {
+            url: "/connect/auth/login",
+            method: "post",
+          },
+          logout: { url: "/connect/auth/logout", method: "get" },
+          user: {
+            url: "/connect/auth/profile",
+            method: "get",
+          },
+        },
+        token: {
+          property: "accessToken",
+          maxAge: 86400,
+        },
+        user: {
+          property: false,
+        },
+      },
+    },
+  },
+
   // Axios module configuration: https://go.nuxtjs.dev/config-axios
   axios: {},
 
