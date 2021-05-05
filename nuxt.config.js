@@ -81,6 +81,11 @@ export default {
             method: "get",
           },
         },
+        redirect: {
+          login: "/login",
+          logout: "/",
+          callback: "/control"
+        },
         token: {
           property: "accessToken",
           maxAge: 86400,

@@ -47,9 +47,6 @@ export default {
         .loginWith("local", {
           data: { account: this.theForm },
         })
-        .then((data) => {
-          this.$router.push('/control')
-        })
         .catch((err) => {
           console.log(err)
         })
