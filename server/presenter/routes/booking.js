@@ -14,34 +14,34 @@ router.get("/booking", async (req, res) => {
     date_check_out: req.body.type,
     
   }
-  const { first_name, last_name, email, phone, password, type } = userData
   const onCreateBooking = await db.tbBooking
     .create({
-      first_name,
-      last_name,
-      email,
-      phone,
-      password,
-      type,
+      price,
+      deposit,
+      room_room_id,
+      user_user_id,
+      date_check_in,
+      date_check_out,
     })
     .then(res.status(201))
     .catch((err) => res.send("Field blank"))
   /* Then Create Role FROM User */
-  if (type === "member" || !type) {
-    db.tbMember
-      .create({
-        user_user_id: onCreateUser.user_id,
-      })
-      .then(res.redirect("/api.akado/v1/"))
-      .catch((err) => res.send(err))
-  } else if (type === "admin") {
-    db.tbAdmin
-      .create({
-        user_user_id: onCreateUser.user_id,
-      })
-      .then(res.redirect("/api.akado/v1/"))
-      .catch((err) => res.send(err))
+  if (onCreateBooking) {
+      res.send('Booking Success')
   }
+  else{
+    res.send('Booking Fail')
+  }
+  db.tbRoom.update(
+    { state: true },
+    { where: { room_id: room_room_id } }
+  )
+    .then(result =>
+      res.send(result)
+    )
+    .catch(err =>
+      res.send(err)
+    )
 })
 
 /* ---------------------------------------------------------------------- */

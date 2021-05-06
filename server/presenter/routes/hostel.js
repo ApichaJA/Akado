@@ -2,6 +2,8 @@
 /* eslint-disable */
 const router = require("express").Router()
 
+const authenticateUser = require("../authenticate/routes/auth")
+
 const conn = require("../../config/database")
 const db = require("../../model/sqlDefine")
 const { QueryTypes } = require('sequelize');
@@ -50,23 +52,43 @@ router.get("/getAllRoom", async (req, res) => {
 /* ---------------------------------------------------------------------- */
 
 /* get Room from hostel_id */
-router.post("/getRoom", async (req, res) => {
-  const getRoom = await db.tbRoom.findAll({
-    where: {
-      hostel_hostel_id: req.body.hostel_id,
-    },
-  })
-  if (getRoom === null) {
-    res.status(404).send("Not found Owner Hostel")
-  } else {
-    res.send(getRoom)
-  }
+router.get("/getFurniture/:room_id", async (req, res) => {
+  res.send(
+    await conn.query(
+      "SELECT * FROM ROOM_FURNITURE rf right OUTER JOIN FURNITURE f\
+      ON (rf.furniture_furniture_id = f.furniture_id)\
+      WHERE rf.room_room_id = :room_id",
+      {
+        replacements: { room_id: req.params.room_id },
+        type: QueryTypes.SELECT,
+      }
+    )
+  )
 })
+
+
+/* ---------------------------------------------------------------------- */
+
+/* get Room from hostel_id */
+router.get("/getRoom/:hostel_id", async (req, res) => {
+  res.send(
+    await conn.query(
+      "SELECT * FROM ROOM r LEFT OUTER JOIN ROOM_TYPE rt\
+      ON (r.room_type_type_id = rt.type_id)\
+      WHERE r.hostel_hostel_id = :hostel_id",
+      {
+        replacements: { hostel_id: req.params.hostel_id },
+        type: QueryTypes.SELECT,
+      }
+    )
+  )
+})
+
 
 /* ---------------------------------------------------------------------- */
 
 /* create HOSTEL */
-router.post("/createHostel", async (req, res) => {
+router.post("/createHostel", authenticateUser, async (req, res) => {
   const hostelData = {
     name: req.body.name,
     phone: req.body.phone,

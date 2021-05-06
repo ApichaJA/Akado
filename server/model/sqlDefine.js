@@ -199,6 +199,24 @@ const tbLocation = conn.define(
   )
   tbRating.removeAttribute("id")
 
+  const tbRoomType = conn.define(
+    "ROOM_TYPE",
+    {
+      room_id: {
+        type: Seq.INTEGER,
+        autoIncrement: true,
+        primaryKey: true,
+      },
+      room_type_type_id: { type: Seq.INTEGER },
+      hostel_hostel_id: { type: Seq.INTEGER },
+      state: { type: Seq.STRING },
+    },
+    {
+      freezeTableName: true,
+    }
+  )
+  tbRoom.removeAttribute("id")
+
 module.exports = {
   tbUser,
   tbMember,
@@ -209,4 +227,5 @@ module.exports = {
   tbBooking,
   tbRating_Location,
   tbRating,
+  tbRoomType,
 }
