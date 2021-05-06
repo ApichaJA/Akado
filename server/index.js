@@ -14,6 +14,7 @@ const createUserRouter = require("./presenter/routes/createUser")
 const hostelRouter = require("./presenter/routes/hostel")
 const locationRouter = require("./presenter/routes/location")
 const bookingRouter = require("./presenter/routes/booking")
+const chatRouter = require("./presenter/routes/chat")
 
 const authService = require('./presenter/authenticate/index')
 
@@ -43,5 +44,6 @@ app.use("/api.akado/v1", createUserRouter)
 app.use("/api.akado/v1", hostelRouter)
 app.use("/api.akado/v1", locationRouter)
 app.use("/api.akado/v1", bookingRouter)
+app.use("/api.akado/v1", chatRouter)
 
 module.exports = app
