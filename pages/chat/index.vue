@@ -1,7 +1,7 @@
 <template>
   <section class="flex flex-col items-center my-20">
     <h1 v-if="chat">Chat</h1>
-    <div class="card" v-for="(chatList, index) in chat" :key="index" @click="toChat(chatUID[0].user_user_id)">
+    <div class="card" v-for="(chatList, index) in chat" :key="index" @click="toChat(chatUID[0].admin_user_id)">
       <div class="card-content">
         <div class="media">
           <div class="media-left">
@@ -22,6 +22,7 @@
   </section>
 </template>
 <script>
+
 export default {
   middleware: "auth",
   data() {
@@ -43,8 +44,8 @@ export default {
           console.log(err)
         })
     },
-    toChat(uid){
-      this.$router.push(`chat/${uid}`)
+    toChat(aid){
+      this.$router.push(`${aid}`)
     }
   },
   async asyncData({ $auth, $http }) {
