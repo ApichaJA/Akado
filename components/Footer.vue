@@ -29,8 +29,8 @@ export default {
           title: "home",
         },
         {
-          href: "/account",
-          name: "account",
+          href: this.$auth.loggedIn ? "/account" : "/login",
+          name: this.$auth.loggedIn ? "account" : "login",
           title: "account",
         },
       ],
@@ -52,6 +52,6 @@ export default {
 }
 
 .fixed-bottom-nav .nav-container .nav-item.active {
-  @apply bg-gray-200 text-blue-800;
+  @apply bg-gray-200 text-primary;
 }
 </style>
