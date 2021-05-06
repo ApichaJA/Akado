@@ -30,6 +30,7 @@
 </template>
 <script>
 export default {
+  middleware: "auth",
   data() {
     return {
       theForm: {
@@ -38,12 +39,15 @@ export default {
       },
     }
   },
-  middleware: "auth",
   methods: {
     async login() {
       await this.$auth
         .loginWith("local", {
           data: { account: this.theForm },
+        })
+        .then(({ data }) => {
+          // this.$auth.setUser(data.user)
+          this.$store.dispatch("user/setUser", data.user)
         })
         .catch((err) => {
           console.log(err)

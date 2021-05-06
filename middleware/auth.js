@@ -1,7 +1,8 @@
-export default function ({ store, redirect}) {
+export default async function ({ store, redirect }) {
   if (store.state.auth.loggedIn) {
-    redirect({ name: 'control' })
+    await this.$auth.strategy.token.sync()
+    return redirect({ name: 'account' })
   } else {
-    redirect('/login')
+    return redirect('/login')
   }
 }

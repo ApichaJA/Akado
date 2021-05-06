@@ -1,5 +1,5 @@
 <template>
-  <navbar class="fixed-bottom-nav">
+  <nav class="fixed-bottom-nav">
     <div class="nav-container space-x-4">
       <nuxt-link
         v-for="(item, i) in navItems"
@@ -11,7 +11,7 @@
         <b-icon :icon="item.title" size="is-medium"> </b-icon>
       </nuxt-link>
     </div>
-  </navbar>
+  </nav>
 </template>
 <script>
 export default {
@@ -19,7 +19,7 @@ export default {
     return {
       navItems: [
         {
-          href: "/account/chat",
+          href: "/chat",
           name: "chat",
           title: "chat",
         },

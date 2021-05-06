@@ -10,32 +10,18 @@ const authenticateUser = require('./auth')
 const KEY = process.env.SECRET_TOKEN || null
 
 const generateUserToken = (account) => {
-  return jwt.sign({ user: account.email, type: account.type }, KEY, {
+  return jwt.sign({ user: account.email, userDetail: account, type: account.type }, KEY, {
     expiresIn: 86400,
   })
 }
 
-// function authenticateUser(req, res, next) {
-//   // const authHeader = req.headers["x-access-token"]
-//   const token = req.headers["authorization"]
-
-//   if (!token) return res.sendStatus(401)
-
-//   const accessToken = token.split(' ')[1]
-
-//   jwt.verify(accessToken, KEY, (err, user) => {
-
-//     if (err) return res.sendStatus(403)
-
-//     req.user = user.user
-
-//     next()
-//   })
-// }
-
 // get user
+router.get("/callback", authenticateUser, (req, res) => {
+  res.json(req.user)
+})
+
 router.get("/profile", authenticateUser, (req, res) => {
-  res.send(req.user)
+  res.json(req.userDetail)
 })
 
 router.post("/login", async (req, res) => {

@@ -61,8 +61,9 @@ export default {
 
   auth: {
     redirect: {
-      logout: "/?loggedOut=1",
+      logout: "/?ref=loggedOut",
       home: "/",
+      callback: "/account"
     },
     watchLoggedIn: true,
     localStorage: false,
@@ -70,7 +71,6 @@ export default {
     fullPathRedirect: false,
     strategies: {
       local: {
-        rewriteRedirects: false,
         endpoints: {
           login: {
             url: "/connect/auth/login",
@@ -78,21 +78,17 @@ export default {
           },
           logout: { url: "/connect/auth/logout", method: "get" },
           user: {
-            url: "/connect/auth/profile",
+            url: "/connect/auth/callback",
             method: "get",
           },
-        },
-        redirect: {
-          login: "/login",
-          logout: "/",
-          callback: "/control",
         },
         token: {
           property: "accessToken",
           maxAge: 86400,
         },
         user: {
-          property: false,
+          property: 'userDetail',
+          autoFetch: true
         },
       },
     },

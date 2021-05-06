@@ -12,6 +12,7 @@ function authenticateUser (req, res, next) {
     if (err) return res.sendStatus(403)
 
     req.user = user.user
+    req.userDetail = user.userDetail
 
     next()
   })
