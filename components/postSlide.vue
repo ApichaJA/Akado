@@ -1,17 +1,26 @@
 <template>
-  <splide :options="options" class="max-w-4xl">
-    <splide-slide v-for="(item, i) in data" :key="i">
-      <nuxt-link
-        :to="`/hostel/${item.hostel_id}`"
-        class="slide-img"
-      >
-        <img
-          src="https://mpics.mgronline.com/pics/Images/563000009856102.JPEG"
-        />
-        <div class="slide-title antialiased">{{ item.name }}</div>
-      </nuxt-link>
-    </splide-slide>
-  </splide>
+  <section>
+    <splide :options="options" class="max-w-4xl" v-if="type === 'non-booking'">
+      <splide-slide v-for="(item, i) in data" :key="i">
+        <nuxt-link :to="`/hostel/${item.hostel_id}`" class="slide-img">
+          <img
+            src="https://mpics.mgronline.com/pics/Images/563000009856102.JPEG"
+          />
+          <div class="slide-title antialiased">{{ item.name }}</div>
+        </nuxt-link>
+      </splide-slide>
+    </splide>
+    <splide :options="options" class="max-w-4xl" v-else-if="type === 'booking'">
+      <splide-slide v-for="(item, i) in data" :key="i">
+        <nuxt-link :to="`/hostel/${item.ROOM.hostel_hostel_id}`" class="slide-img">
+          <img
+            src="https://live.staticflickr.com/4154/4973067641_4d8eacf302_b.jpg"
+          />
+          <div class="slide-title antialiased">{{ item.hostel_name }}</div>
+        </nuxt-link>
+      </splide-slide>
+    </splide>
+  </section>
 </template>
 <script>
 export default {
@@ -22,7 +31,14 @@ export default {
       default() {
         return null
       },
-    }
+    },
+    type: {
+      type: String,
+      require: false,
+      default() {
+        return ""
+      },
+    },
   },
   data() {
     return {

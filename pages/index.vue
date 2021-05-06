@@ -8,16 +8,16 @@
 
     <section class="slide-box space-y-4 max-w-full">
       <h1 class="section-headline">Recommended Hotels</h1>
-      <!-- <client-only>
-        <Slide :data="hotels" />
-      </client-only> -->
+      <client-only>
+        <Slide :data="hotels" type="non-booking" />
+      </client-only>
     </section>
 
     <section class="slide-box space-y-4 max-w-full">
       <h1 class="section-headline">Hot Deals</h1>
-      <!-- <client-only>
-        <Slide :data="hotels" />
-      </client-only> -->
+      <client-only>
+        <Slide :data="hotels" type="non-booking" />
+      </client-only>
     </section>
   </section>
 </template>
@@ -57,8 +57,6 @@ export default {
 }
 </script>
 <style scoped>
-/* .slide-wrap {
-} */
 
 .slide-box {
   @apply flex flex-col;

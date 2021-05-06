@@ -32,14 +32,14 @@
     </div>
 
     <div class="wrap-container user-booking">
-      {{ bookingsList }}
+      {{bookingsList}}
       <h1 class="text-secondary font-bold">Recently Booking</h1>
       <section v-if="bookingsList.length > 0">
-        <div v-for="(item, i) in bookingsList" :key="i">
-          
-        </div>
+        <client-only>
+          <Slide :data="bookingsList" type="booking" />
+        </client-only>
       </section>
-      <div class="mx-auto mt-6 text-gray-500">
+      <div v-else class="mx-auto mt-6 text-gray-500">
         - You're not booking any hostel -
       </div>
     </div>
@@ -49,6 +49,9 @@
 import { mapGetters } from "vuex"
 
 export default {
+  components: {
+    Slide: () => import("@/components/postSlide"),
+  },
   middleware: "auth",
   async asyncData({ $http, $auth, redirect, app }) {
     if (app.$auth.loggedIn) {

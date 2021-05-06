@@ -7,6 +7,9 @@ const authenticateUser = require("../authenticate/routes/auth")
 
 db.tbUser.hasMany(db.tbBooking, { foreignKey: "user_user_id" })
 db.tbBooking.belongsTo(db.tbUser, { foreignKey: "user_user_id" })
+db.tbBooking.belongsTo(db.tbRoom, { foreignKey: "room_room_id" })
+db.tbHostel.hasMany(db.tbRoom, { foreignKey: "hostel_hostel_id" })
+db.tbRoom.belongsTo(db.tbHostel, { foreignKey: "hostel_hostel_id" })
 
 /* get All User Data */
 router.post("/booking", async (req, res) => {
@@ -48,9 +51,9 @@ router.get("/booking", authenticateUser, async (req, res) => {
     const uid = req.userDetail.user_id
     const data = await db.tbBooking.findAll({
       where: {
-        user_user_id: uid,
+        user_user_id: uid
       },
-      include: [db.tbUser],
+      include: [db.tbRoom]
     })
 
     console.log(data)
