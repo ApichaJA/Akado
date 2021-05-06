@@ -32,7 +32,7 @@ router.post("/login", async (req, res) => {
       where: {
         [Op.and]: [{ email: email }, { password: password }]
       },
-      attributes: ['first_name', 'last_name', 'email', 'phone', 'type']
+      attributes: ['user_id', 'first_name', 'last_name', 'email', 'phone', 'type']
     })
     .catch((e) => console.error(e))
 

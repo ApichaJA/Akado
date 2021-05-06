@@ -3,16 +3,20 @@ const router = require("express").Router()
 const conn = require("../../config/database")
 const db = require("../../model/sqlDefine")
 
+const authenticateUser = require("../authenticate/routes/auth")
+
+db.tbUser.hasMany(db.tbBooking, { foreignKey: "user_user_id" })
+db.tbBooking.belongsTo(db.tbUser, { foreignKey: "user_user_id" })
+
 /* get All User Data */
-router.get("/booking", async (req, res) => {
+router.post("/booking", async (req, res) => {
   const bookingData = {
     price: req.body.first_name,
     deposit: req.body.last_name,
     room_room_id: req.body.email,
     user_user_id: req.body.phone,
-    date_check_in: req.body.password,
-    date_check_out: req.body.type,
-    
+    date_check_in: req.body.checkInDate,
+    date_check_out: req.body.ChaekOutDate,
   }
   const onCreateBooking = await db.tbBooking
     .create({
@@ -27,21 +31,34 @@ router.get("/booking", async (req, res) => {
     .catch((err) => res.send("Field blank"))
   /* Then Create Role FROM User */
   if (onCreateBooking) {
-      res.send('Booking Success')
+    res.send("Booking Success")
+  } else {
+    res.send("Booking Fail")
   }
-  else{
-    res.send('Booking Fail')
+  db.tbRoom
+    .update({ state: true }, { where: { room_id: room_room_id } })
+    .then((result) => res.send(result))
+    .catch((err) => res.send(err))
+})
+
+router.get("/booking/:id", async (req, res) => {})
+
+router.get("/booking", authenticateUser, async (req, res) => {
+  try {
+    const uid = req.userDetail.user_id
+    const data = await db.tbBooking.findAll({
+      where: {
+        user_user_id: uid,
+      },
+      include: [db.tbUser],
+    })
+
+    console.log(data)
+
+    res.json(data)
+  } catch (e) {
+    res.send(e)
   }
-  db.tbRoom.update(
-    { state: true },
-    { where: { room_id: room_room_id } }
-  )
-    .then(result =>
-      res.send(result)
-    )
-    .catch(err =>
-      res.send(err)
-    )
 })
 
 /* ---------------------------------------------------------------------- */

@@ -32,8 +32,16 @@
     </div>
 
     <div class="wrap-container user-booking">
+      {{ bookingsList }}
       <h1 class="text-secondary font-bold">Recently Booking</h1>
-      <div class="mx-auto mt-6 text-gray-500">- You're not booking any hostel -</div>
+      <section v-if="bookingsList.length > 0">
+        <div v-for="(item, i) in bookingsList" :key="i">
+          
+        </div>
+      </section>
+      <div class="mx-auto mt-6 text-gray-500">
+        - You're not booking any hostel -
+      </div>
     </div>
   </section>
 </template>
@@ -50,12 +58,21 @@ export default {
         },
       })
 
-      if (user) {
-        return { user }
-      }
+      const bookingsList = await $http.$get("/connect/api.akado/v1/booking", {
+        headers: {
+          Authorization: $auth.strategy.token.get(),
+        },
+      })
+
+      return { user, bookingsList }
     }
 
     return redirect("/login")
+  },
+  data() {
+    return {
+      bookings: null,
+    }
   },
   computed: {
     ...mapGetters("user", ["getUser"]),
