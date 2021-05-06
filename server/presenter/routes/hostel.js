@@ -59,7 +59,11 @@ router.get("/getHostel/:id", async (req, res) => {
 /* get AllRoom */
 
 router.get("/getAllRoom", async (req, res) => {
-  const getAllRoom = await db.tbRoom.findAll()
+  const getAllRoom = await db.tbRoom.findAll({
+    where: {
+      hostel_hostel_id: req.query.id
+    }
+  })
   if (getAllRoom === null) {
     res.status(404).send("Cannot get Hostel")
   } else {
