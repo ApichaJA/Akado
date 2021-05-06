@@ -9,6 +9,24 @@ const db = require("../../model/sqlDefine")
 const { QueryTypes } = require('sequelize');
 
 
+router.get("/searchHostel/:name", async (req, res) => {
+  const data = await conn.query(
+    "SELECT * FROM HOSTEL h LEFT OUTER JOIN RATING r\
+    ON (h.hostel_id = r.hostel_hostel_id)\
+    WHERE h.name LIKE :hostel_name",
+    {
+      replacements: { hostel_name: '%'+req.params.name+'%' },
+      type: QueryTypes.SELECT
+    }
+    ).catch(e => res.send(e))
+
+    if (data.length < 1) {
+      res.status(404).send()
+    } else {
+      res.status(200).json(data[0])
+    }
+})
+
 router.get("/getAllHostel", async (req, res) => {
   const getAllHostel = await db.tbHostel.findAll()
   if (getAllHostel === null) {

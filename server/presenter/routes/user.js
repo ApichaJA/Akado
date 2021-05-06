@@ -2,15 +2,24 @@ const router = require("express").Router()
 
 const conn = require("../../config/database")
 const db = require("../../model/sqlDefine")
+const { QueryTypes } = require('sequelize');
 
 /* get User Data from user_id */
-router.post("/getUser", async (req, res) => {
-  const getUser = await db.tbUser.findByPk(req.body.user_id)
-  if (getUser === null) {
-    res.status(404).send("Not found User")
-  } else {
-    res.send(getUser)
-  }
+router.get("/getUser/:user_id", async (req, res) => {
+  const data = await conn.query(
+    'SELECT * FROM USER\
+    WHERE USER.user_id = :user_id',
+    {
+      replacements: { user_id: req.params.user_id },
+      type: QueryTypes.SELECT
+    }
+    ).catch(e => res.send(e))
+
+    if (data.length < 1) {
+      res.status(404).send()
+    } else {
+      res.status(200).json(data)
+    }
 })
 /* ---------------------------------------------------------------------- */
 
