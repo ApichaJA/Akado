@@ -93,17 +93,17 @@ router.get("/getFurniture/:room_id", async (req, res) => {
 
 /* get Room from hostel_id */
 router.get("/getRoom/:hostel_id", async (req, res) => {
-  res.send(
-    await conn.query(
-      "SELECT * FROM ROOM r LEFT OUTER JOIN ROOM_TYPE rt\
-      ON (r.room_type_type_id = rt.type_id)\
-      WHERE r.hostel_hostel_id = :hostel_id",
-      {
-        replacements: { hostel_id: req.params.hostel_id },
-        type: QueryTypes.SELECT,
-      }
-    )
+  const data = await conn.query(
+    "SELECT * FROM ROOM r LEFT OUTER JOIN ROOM_TYPE rt\
+    ON (r.room_type_type_id = rt.type_id)\
+    WHERE r.hostel_hostel_id = :hostel_id",
+    {
+      replacements: { hostel_id: req.params.hostel_id },
+      type: QueryTypes.SELECT,
+    }
   )
+
+  res.send(data) 
 })
 
 

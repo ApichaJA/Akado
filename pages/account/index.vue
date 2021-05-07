@@ -32,7 +32,6 @@
     </div>
 
     <div class="wrap-container user-booking">
-      {{bookingsList}}
       <h1 class="text-secondary font-bold">Recently Booking</h1>
       <section v-if="bookingsList.length > 0">
         <client-only>
