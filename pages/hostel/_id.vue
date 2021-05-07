@@ -112,7 +112,7 @@ export default {
       const { data } = await this.$axios.get(
         `/connect/api.akado/v1/getRoom/${this.hostel.hostel_id}`
       )
-      this.rooms = data
+      this.rooms = data || null
     },
   },
 }
