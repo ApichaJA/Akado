@@ -13,36 +13,35 @@ db.tbHostel.hasMany(db.tbRoom, { foreignKey: "hostel_hostel_id" })
 db.tbRoom.belongsTo(db.tbHostel, { foreignKey: "hostel_hostel_id" })
 
 /* get All User Data */
-router.post("/booking", async (req, res) => {
-  const bookingData = {
-    price: req.body.first_name,
-    deposit: req.body.last_name,
-    room_room_id: req.body.email,
-    user_user_id: req.body.phone,
-    date_check_in: req.body.checkInDate,
-    date_check_out: req.body.ChaekOutDate,
-  }
+router.post("/booking", authenticateUser, async (req, res) => {
+  // const uid = req.userDetail.user_id
+  // const bookingData = {
+  //   price: req.body.data.price,
+  //   deposit: req.body.data.deposit,
+  //   room_room_id: req.body.data.room_id,
+  //   user_user_id: uid,
+  // }
+  console.log(req.body)
   const onCreateBooking = await db.tbBooking
     .create({
-      price,
-      deposit,
-      room_room_id,
-      user_user_id,
-      date_check_in,
-      date_check_out,
+      price: req.body.data.price,
+      deposit: req.body.data.deposit,
+      room_room_id: req.body.data.room_id,
+      user_user_id: 17,
     })
-    .then(res.status(201))
-    .catch((err) => res.send("Field blank"))
-  /* Then Create Role FROM User */
-  if (onCreateBooking) {
-    res.send("Booking Success")
-  } else {
-    res.send("Booking Fail")
-  }
-  db.tbRoom
-    .update({ state: true }, { where: { room_id: room_room_id } })
-    .then((result) => res.send(result))
-    .catch((err) => res.send(err))
+    // .then(res.status(201))
+    // .catch((err) => res.send("Field blank"))
+    console.log(onCreateBooking)
+  // /* Then Create Role FROM User */
+  // if (onCreateBooking) {
+  //   res.send("Booking Success")
+  // } else {
+  //   res.send("Booking Fail")
+  // }
+  // db.tbRoom
+  //   .update({ state: true }, { where: { room_id: room_room_id } })
+  //   .then((result) => res.send(result))
+  //   .catch((err) => res.send(err))
 })
 
 router.get("/booking/:id", async (req, res) => {})
