@@ -9,18 +9,13 @@ const db = require("../../model/sqlDefine")
 const { QueryTypes } = require('sequelize');
 
 
-router.get("/getAllHostel", async (req, res) => {
-  const getAllHostel = await db.tbHostel.findAll()
-  if (getAllHostel === null) {
-    res.status(404).send("Cannot get Hostel")
-  } else {
-    res.staturouter.get("/getRoom/:id", async (router.get("/getHostel/:id", async (req, res) => {
+router.get("/searchHostel/:name", async (req, res) => {
   const data = await conn.query(
-    'SELECT * FROM HOSTEL h LEFT OUTER JOIN RATING r\
+    "SELECT * FROM HOSTEL h LEFT OUTER JOIN RATING r\
     ON (h.hostel_id = r.hostel_hostel_id)\
-    WHERE h.hostel_id = :hostel_id',
+    WHERE h.name LIKE :hostel_name",
     {
-      replacements: { hostel_id: req.params.id },
+      replacements: { hostel_name: '%'+req.params.name+'%' },
       type: QueryTypes.SELECT
     }
     ).catch(e => res.send(e))
@@ -30,8 +25,32 @@ router.get("/getAllHostel", async (req, res) => {
     } else {
       res.status(200).json(data[0])
     }
-})  }
-}))
+})
+
+router.get("/getAllHostel", async (req, res) => {
+  const getAllHostel = await db.tbHostel.findAll()
+  if (getAllHostel === null) {
+    res.status(404).send("Cannot get Hostel")
+  } else {
+    res.status(200).send(getAllHostel)
+  }
+})
+
+router.get("/getRoom/:id", async (req, res) => {
+  const data = await conn.query(
+    'SELECT * FROM ROOM r JOIN HOSTEL h\
+    ON (r.hostel_hostel_id = h.hostel_id)\
+    WHERE r.room_id = :room_id',
+    {
+      replacements: { room_id: req.params.id },
+      type: QueryTypes.SELECT
+    }
+    ).catch(e => res.send(e))
+
+    if (data.length < 1) {
+      res.status(404).send()
+    } else {
+      res.status(200).json(data[0])
     }
 })
 
@@ -40,7 +59,9 @@ router.get("/getAllHostel", async (req, res) => {
 /* get AllRoom */
 
 router.get("/getAllRoom", async (req, res) => {
-  const getAllRoom = await db..id
+  const getAllRoom = await db.tbRoom.findAll({
+    where: {
+      hostel_hostel_id: req.query.id
     }
   })
   if (getAllRoom === null) {
@@ -71,6 +92,20 @@ router.get("/getFurniture/:room_id", async (req, res) => {
 /* ---------------------------------------------------------------------- */
 
 /* get Room from hostel_id */
+router.get("/getRoom/:hostel_id", async (req, res) => {
+  const data = await conn.query(
+    "SELECT * FROM ROOM r LEFT OUTER JOIN ROOM_TYPE rt\
+    ON (r.room_type_type_id = rt.type_id)\
+    WHERE r.hostel_hostel_id = :hostel_id",
+    {
+      replacements: { hostel_id: req.params.hostel_id },
+      type: QueryTypes.SELECT,
+    }
+  )
+
+  res.send(data) 
+})
+
 
 /* ---------------------------------------------------------------------- */
 
