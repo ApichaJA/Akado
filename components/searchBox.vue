@@ -12,36 +12,15 @@
         />
       </div>
 
-      <div class="w-full col-span-2 sm:col-span-1 grid grid-cols-1 gap-y-2">
-        <b-field label="Select travel dates">
-          <b-datetimepicker
-            placeholder="Check-in Date"
-            icon="calendar-today"
-            locale="en-US"
-            required
-          >
-          </b-datetimepicker>
-        </b-field>
-      </div>
-
-      <div class="w-full col-span-2 sm:col-span-1 grid grid-cols-1 gap-y-2">
-        <b-field label="To">
-          <b-datetimepicker
-            placeholder="Check-out Date"
-            icon="calendar-today"
-            locale="en-US"
-            required
-          >
-          </b-datetimepicker>
-        </b-field>
-      </div>
-
       <div class="btn-wrap col-span-2 mt-2">
         <button type="submit" class="w-full sm:w-auto">Search</button>
       </div>
     </div>
   </form>
 </template>
+<script>
+
+</script>
 <style scoped>
 .search-wrap {
   @apply relative grid grid-cols-1 place-content-center place-items-center bg-gray-100 rounded-xl w-full max-w-full px-6 py-12;

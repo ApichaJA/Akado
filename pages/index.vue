@@ -6,14 +6,14 @@
 
     <searchBox />
 
-    <section class="slide-box space-y-4 max-w-full">
+    <section v-if="hotels" class="slide-box space-y-4 max-w-full">
       <h1 class="section-headline">Recommended Hotels</h1>
       <client-only>
         <Slide :data="hotels" type="non-booking" />
       </client-only>
     </section>
 
-    <section class="slide-box space-y-4 max-w-full">
+    <section v-if="hotels" class="slide-box space-y-4 max-w-full">
       <h1 class="section-headline">Hot Deals</h1>
       <client-only>
         <Slide :data="hotels" type="non-booking" />
