@@ -16,9 +16,9 @@ router.get("/getUser/:user_id", async (req, res) => {
     ).catch(e => res.send(e))
 
     if (data.length < 1) {
-      res.status(404).send()
+      res.send(false)
     } else {
-      res.status(200).json(data)
+      res.json(data)
     }
 })
 /* ---------------------------------------------------------------------- */
