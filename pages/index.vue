@@ -4,16 +4,29 @@
   >
     <!-- <Hero :data="{ name: 'DUSIT THANI', address: 'Phuket, Thailand' }" /> -->
 
-    <searchBox />
+    <searchBox @clicked="getData" />
 
-    <section v-if="hotels" class="slide-box space-y-4 max-w-full">
+    <section v-if="searchItems" class="slide-box space-y-4 max-w-full">
+      <h1 class="section-headline">Search Results For {{ $route.query.q }}</h1>
+      <client-only>
+        <Slide :data="searchItems" type="non-booking" />
+      </client-only>
+    </section>
+
+    <section
+      v-if="hotels && !searchItems"
+      class="slide-box space-y-4 max-w-full"
+    >
       <h1 class="section-headline">Recommended Hotels</h1>
       <client-only>
         <Slide :data="hotels" type="non-booking" />
       </client-only>
     </section>
 
-    <section v-if="hotels" class="slide-box space-y-4 max-w-full">
+    <section
+      v-if="hotels && !searchItems"
+      class="slide-box space-y-4 max-w-full"
+    >
       <h1 class="section-headline">Hot Deals</h1>
       <client-only>
         <Slide :data="hotels" type="non-booking" />
@@ -49,14 +62,19 @@ export default {
         "https://static.seattletimes.com/wp-content/uploads/2019/01/01282019_hotel-upgrade_112654-780x501.jpg",
         "https://cdn.escapio.com/public/cache/hotel/plain-nowater/x/5431_viceroy_bali_33520946.jpg",
       ],
+      searchItems: null
     }
   },
   created() {
     this.getHotels()
     this.setPage("K-DORM")
   },
+  watchQuery: true,
   methods: {
     ...mapActions("page", ["setPage"]),
+    getData (callback) {
+      this.searchItems = callback
+    },
     async getHotels() {
       try {
         const { data } = await this.$axios.get(

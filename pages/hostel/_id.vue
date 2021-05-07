@@ -22,9 +22,9 @@
       </div>
     </div>
 
-    <div class="max-w-4xl w-full grid grid-cols-1 gap-y-4">
+    <div v-if="rooms" class="max-w-4xl w-full grid grid-cols-1 gap-y-4">
       <h1 class="font-bold">Available Rooms</h1>
-      <div v-if="rooms && rooms !== null" class="room-wrap">
+      <div v-if="rooms.length" class="room-wrap">
         <div
           v-for="(item, i) in getRoomsWithRandomImage"
           :key="i"
@@ -91,7 +91,7 @@ export default {
   },
   computed: {
     getRoomsWithRandomImage() {
-      if (this.rooms) {
+      if (this.rooms && this.rooms.length > 0) {
         this.rooms.forEach((item) => {
           item.img = this.hotelRoom[
             Math.floor(Math.random() * this.hotelRoom.length)
@@ -99,12 +99,12 @@ export default {
         })
       }
 
-      return this.rooms
+      return this.rooms || null
     },
   },
-  mounted() {
+  async mounted() {
     //  this.setPage(this.hostel.name)
-    this.getHostel()
+    await this.getHostel()
   },
   methods: {
     ...mapActions("page", ["setPage"]),

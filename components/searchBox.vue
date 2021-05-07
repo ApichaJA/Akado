@@ -1,13 +1,15 @@
 <template>
-  <form class="search-wrap">
+  <form class="search-wrap" method="get" @submit.prevent="findHostel">
     <div class="search-container gap-x-4">
       <div class="col-span-2 w-full grid grid-cols-1 gap-y-2">
         <label for="q">Where you want to rest?</label>
         <input
           id="q"
+          v-model="q"
           type="text"
           placeholder="Find your best place"
           class="w-full"
+          name="q"
           required
         />
       </div>
@@ -19,7 +21,29 @@
   </form>
 </template>
 <script>
+export default {
+  data() {
+    return {
+      q: "",
+      dataSet: null,
+    }
+  },
+  watchQuery: true,
+  methods: {
+    async findHostel() {
+      const data = await this.$axios.get(
+        `/connect/api.akado/v1/searchHostel/${this.q}`
+      )
 
+      console.log(data)
+
+      if (data) {
+        this.dataSet = data
+        this.$emit("clicked", this.dataSet)
+      }
+    },
+  },
+}
 </script>
 <style scoped>
 .search-wrap {
