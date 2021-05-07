@@ -14,7 +14,7 @@ db.tbRoom.belongsTo(db.tbHostel, { foreignKey: "hostel_hostel_id" })
 
 /* get All User Data */
 router.post("/booking", authenticateUser, async (req, res) => {
-  // const uid = req.userDetail.user_id
+  const uid = req.userDetail.user_id
   // const bookingData = {
   //   price: req.body.data.price,
   //   deposit: req.body.data.deposit,
@@ -26,8 +26,9 @@ router.post("/booking", authenticateUser, async (req, res) => {
     .create({
       price: req.body.data.price,
       deposit: req.body.data.deposit,
-      room_room_id: req.body.data.room_id,
-      user_user_id: 17,
+      room_room_id: req.body.data.room_room_id,
+      hostel_name: req.body.data.name,
+      user_user_id: uid,
     })
     // .then(res.status(201))
     // .catch((err) => res.send("Field blank"))

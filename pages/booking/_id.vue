@@ -95,6 +95,7 @@ export default {
         price: this.room.price_month,
         deposit: this.room.deposit,
         room_room_id: this.room.room_id,
+        name: this.hostel.name,
       }
       await this.$axios.post("/connect/api.akado/v1/booking", { data })
     },
