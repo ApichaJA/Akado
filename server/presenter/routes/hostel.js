@@ -38,9 +38,9 @@ router.get("/getAllHostel", async (req, res) => {
 
 router.get("/getHostel/:id", async (req, res) => {
   const data = await conn.query(
-    `SELECT * FROM HOSTEL h LEFT OUTER JOIN RATING r\
-    ON (h.hostel_id = r.hostel_hostel_id)
-    WHERE h.hostel_id = :hostel_id`,
+    'SELECT * FROM HOSTEL h LEFT OUTER JOIN RATING r\
+    ON (h.hostel_id = r.hostel_hostel_id)\
+    WHERE h.hostel_id = :hostel_id',
     {
       replacements: { hostel_id: req.params.id },
       type: QueryTypes.SELECT
@@ -52,6 +52,21 @@ router.get("/getHostel/:id", async (req, res) => {
     } else {
       res.status(200).json(data[0])
     }
+})
+
+/* get Room from hostel_id */
+router.get("/getRoom/:hostel_id", async (req, res) => {
+  const data = await conn.query(
+    "SELECT * FROM ROOM r LEFT OUTER JOIN ROOM_TYPE rt\
+    ON (r.room_type_type_id = rt.type_id)\
+    WHERE r.hostel_hostel_id = :hostel_id",
+    {
+      replacements: { hostel_id: req.params.hostel_id },
+      type: QueryTypes.SELECT,
+    }
+  )
+
+  res.send(data) 
 })
 
 /* ---------------------------------------------------------------------- */
