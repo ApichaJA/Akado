@@ -7,7 +7,9 @@
         :to="`/hostel/${item.hostel_id}`"
         class="slide-img"
       >
-        <img :src="item.image" />
+        <img
+          :src="item.img"
+        />
         <div class="slide-title antialiased">{{ item.name }}</div>
       </nuxt-link>
     </div>

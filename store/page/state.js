@@ -1,5 +1,5 @@
 /* eslint-disable */
 export default () => ({
-    page: 'AKADO',
+    page: 'K-DORM',
   })
   

@@ -24,7 +24,7 @@
 
     <div class="max-w-4xl w-full grid grid-cols-1 gap-y-4">
       <h1 class="font-bold">Available Rooms</h1>
-      <div v-if="rooms && rooms !== null" class="room-wrap">
+      <div v-if="hostel && rooms" class="room-wrap">
         <div
           v-for="(item, i) in getRoomsWithRandomImage"
           :key="i"
@@ -38,14 +38,8 @@
               {{ item.type_name }}
             </h1>
             <span>
-              {{ item.price_month && item.price_month + "฿/month" }}
+              {{ item.price_month && 'Monthly ' + item.price_month + "฿" }}
             </span>
-            <nuxt-link
-              class="bg-gray-700 text-white px-4 py-2 mt-4 rounded-md hover:text-gray-50 hover:bg-primary"
-              :to="`/booking/${item.room_id}`"
-            >
-              Book now
-            </nuxt-link>
           </div>
         </div>
       </div>
@@ -145,16 +139,12 @@ export default {
   top: 0;
   width: 100%;
   height: 100%;
-  @apply object-cover rounded-md;
+  @apply object-cover;
 }
 
 .room-wrap .room-item .room-content {
   flex: 1 1 10%;
   @apply grid grid-cols-1 gap-y-3 place-content-start place-items-start;
-}
-
-.room-wrap .room-item .room-content h1 {
-  @apply text-2xl font-bold;
 }
 
 @screen md {

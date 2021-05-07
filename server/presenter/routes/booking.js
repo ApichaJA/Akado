@@ -17,7 +17,7 @@ router.post("/booking", async (req, res) => {
   const bookingData = {
     price: req.body.first_name,
     deposit: req.body.last_name,
-    room_room_id: req.body.email,
+    room_room_id: req.body.room_id,
     user_user_id: req.body.phone,
     date_check_in: req.body.checkInDate,
     date_check_out: req.body.ChaekOutDate,
@@ -46,27 +46,27 @@ router.post("/booking", async (req, res) => {
 })
 
 router.get("/booking/:id", async (req, res) => {
-  try {
-    const uid = req.userDetail.user_id
-    const data = await conn.query(
-      'SELECT * FROM BOOKING b JOIN\
-      ROOM r\
-      ON b.room_room_id = r.room_id\
-      JOIN HOSTEL h\
-      ON r.room_id = h.hostel_id\
-      WHERE b.user_user_id = :user_id',
-      {
-        replacements: { user_id: uid},
-        type: QueryTypes.SELECT
-      }
-      )
-
-    console.log(data)
-
-    res.json(data)
-  } catch (e) {
-    res.send(e)
-  }
+    try {
+      const uid = req.userDetail.user_id
+      const data = await conn.query(
+        'SELECT * FROM BOOKING b JOIN\
+        ROOM r\
+        ON b.room_room_id = r.room_id\
+        JOIN HOSTEL h\
+        ON r.room_id = h.hostel_id\
+        WHERE b.user_user_id = :user_id',
+        {
+          replacements: { user_id: uid},
+          type: QueryTypes.SELECT
+        }
+        )
+  
+      console.log(data)
+  
+      res.json(data)
+    } catch (e) {
+      res.send(e)
+    }
 })
 
 router.get("/booking", authenticateUser, async (req, res) => {

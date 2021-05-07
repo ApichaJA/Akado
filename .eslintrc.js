@@ -5,22 +5,17 @@ module.exports = {
     node: true,
   },
   parserOptions: {
-    parser: "babel-eslint",
+    parser: 'babel-eslint',
   },
   extends: [
-    "@nuxtjs",
-    "plugin:prettier/recommended",
-    "plugin:wdio/recommended",
-    "plugin:nuxt/recommended",
+    '@nuxtjs',
+    'plugin:prettier/recommended',
+    'plugin:wdio/recommended',
+    'plugin:nuxt/recommended',
   ],
-  plugins: ["wdio"],
+  plugins: ['wdio'],
   // add your custom rules here
   rules: {
-    "prettier/prettier": [
-      "error",
-      {
-        endOfLine: "auto",
-      },
-    ],
+    'prettier/prettier': 1,
   },
 }
