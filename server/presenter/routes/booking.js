@@ -2,6 +2,7 @@ const router = require("express").Router()
 
 const conn = require("../../config/database")
 const db = require("../../model/sqlDefine")
+const { QueryTypes } = require('sequelize');
 
 const authenticateUser = require("../authenticate/routes/auth")
 
@@ -47,22 +48,45 @@ router.post("/booking", async (req, res) => {
 router.get("/booking/:id", async (req, res) => {})
 
 router.get("/booking", authenticateUser, async (req, res) => {
-  try {
-    const uid = req.userDetail.user_id
-    const data = await db.tbBooking.findAll({
-      where: {
-        user_user_id: uid
-      },
-      include: [db.tbRoom]
-    })
+    try {
+      const uid = req.userDetail.user_id
+      const data = await conn.query(
+        'SELECT * FROM BOOKING b JOIN\
+        ROOM r\
+        ON b.room_room_id = r.room_id\
+        JOIN HOSTEL h\
+        ON r.room_id = h.hostel_id\
+        WHERE b.user_user_id = :user_id',
+        {
+          replacements: { user_id: uid},
+          type: QueryTypes.SELECT
+        }
+        )
+  
+      console.log(data)
+  
+      res.json(data)
+    } catch (e) {
+      res.send(e)
+    }
+  })
+// router.get("/booking", authenticateUser, async (req, res) => {
+//   try {
+//     const uid = req.userDetail.user_id
+//     const data = await db.tbBooking.findAll({
+//       where: {
+//         user_user_id: uid
+//       },
+//       include: [db.tbRoom]
+//     })
 
-    console.log(data)
+//     console.log(data)
 
-    res.json(data)
-  } catch (e) {
-    res.send(e)
-  }
-})
+//     res.json(data)
+//   } catch (e) {
+//     res.send(e)
+//   }
+// })
 
 /* ---------------------------------------------------------------------- */
 

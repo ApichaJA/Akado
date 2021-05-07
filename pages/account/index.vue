@@ -32,11 +32,33 @@
     </div>
 
     <div class="wrap-container user-booking">
-      {{bookingsList}}
       <h1 class="text-secondary font-bold">Recently Booking</h1>
       <section v-if="bookingsList.length > 0">
         <client-only>
-          <Slide :data="bookingsList" type="booking" />
+          <div
+            class="columns my-5 col-box"
+            v-for="(bookingsLists, index) in bookingsList"
+            :key="index"
+          >
+            <div class="column p-0 is-4">
+              <img
+                :src="bookingsLists.image"
+                style="border-radius: 7px 0 0 7px"
+                width="300px"
+                height="300px"
+              />
+            </div>
+            <div class="column is-2">
+              <span>ที่พัก {{ bookingsLists.hostel_name }}</span>
+              <span>ราคา {{ bookingsLists.price }}</span>
+              <span>จำกัด เพศ {{ bookingsLists.gender }}</span>
+              <span class="mt-3">ที่อยู่ {{ bookingsLists.address }}</span>
+            </div>
+            <div class="column is-4">
+              <span>วันที่เข้าพัก {{ bookingsLists.date_check_in }}</span>
+              <span>วันที่ออกที่พัก {{ bookingsLists.date_check_out }}</span>
+            </div>
+          </div>
         </client-only>
       </section>
       <div v-else class="mx-auto mt-6 text-gray-500">
@@ -49,9 +71,6 @@
 import { mapGetters } from "vuex"
 
 export default {
-  components: {
-    Slide: () => import("@/components/postSlide"),
-  },
   middleware: "auth",
   async asyncData({ $http, $auth, redirect, app }) {
     if (app.$auth.loggedIn) {
@@ -123,5 +142,22 @@ export default {
     width: 10rem;
     @apply absolute -left-2 -top-20;
   }
+}
+
+.col-box {
+  border-radius: 10px 0 0 10px;
+  cursor: pointer;
+  border: 1px solid #343434;
+}
+
+.col-box:hover {
+  color: white;
+  background-color: #343434;
+  transition: 0.5s;
+}
+
+.column span {
+  display: block;
+  width: 40vh;
 }
 </style>
