@@ -1,8 +1,8 @@
 const router = require("express").Router()
 
+const { QueryTypes } = require("sequelize")
 const conn = require("../../config/database")
 const db = require("../../model/sqlDefine")
-const { QueryTypes } = require('sequelize');
 
 const authenticateUser = require("../authenticate/routes/auth")
 
@@ -45,21 +45,23 @@ router.post("/booking", async (req, res) => {
     .catch((err) => res.send(err))
 })
 
-router.get("/booking/:id", async (req, res) => {
+router.get("/booking/:id", async (req, res) => {})
+
+router.get("/booking", authenticateUser, async (req, res) => {
   try {
     const uid = req.userDetail.user_id
     const data = await conn.query(
-      'SELECT * FROM BOOKING b JOIN\
-      ROOM r\
-      ON b.room_room_id = r.room_id\
-      JOIN HOSTEL h\
-      ON r.room_id = h.hostel_id\
-      WHERE b.user_user_id = :user_id',
+      `SELECT * FROM BOOKING b JOIN
+        ROOM r
+        ON b.room_room_id = r.room_id
+        JOIN HOSTEL h
+        ON r.room_id = h.hostel_id
+        WHERE b.user_user_id = :user_id`,
       {
-        replacements: { user_id: uid},
-        type: QueryTypes.SELECT
+        replacements: { user_id: uid },
+        type: QueryTypes.SELECT,
       }
-      )
+    )
 
     console.log(data)
 
@@ -68,30 +70,6 @@ router.get("/booking/:id", async (req, res) => {
     res.send(e)
   }
 })
-
-router.get("/booking", authenticateUser, async (req, res) => {
-    try {
-      const uid = req.userDetail.user_id
-      const data = await conn.query(
-        'SELECT * FROM BOOKING b JOIN\
-        ROOM r\
-        ON b.room_room_id = r.room_id\
-        JOIN HOSTEL h\
-        ON r.room_id = h.hostel_id\
-        WHERE b.user_user_id = :user_id',
-        {
-          replacements: { user_id: uid},
-          type: QueryTypes.SELECT
-        }
-        )
-  
-      console.log(data)
-  
-      res.json(data)
-    } catch (e) {
-      res.send(e)
-    }
-  })
 // router.get("/booking", authenticateUser, async (req, res) => {
 //   try {
 //     const uid = req.userDetail.user_id
