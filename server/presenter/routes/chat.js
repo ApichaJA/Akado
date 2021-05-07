@@ -31,7 +31,6 @@ router.get("/getChat/:aid", authenticateUser, async (req, res) => {
 })
 
 router.post("/insertChat", authenticateUser, async (req, res) => {
-    console.log(req.body.data.id_chat_log)
     const data = await conn.query(
         'INSERT INTO CHAT_LOG (id_chat_log, message, role)\
         VALUE (:id_chat_log, :message, :role)',
@@ -63,9 +62,9 @@ router.get("/getChatList", authenticateUser, async (req, res) => {
         }
         ).catch(e => res.send(e))
             if (data.length < 1) {
-          res.status(404).send('Not Found')
+          res.send('Not Found')
         } else {
-          res.status(200).json(data)
+          res.json(data)
         }
 })
 

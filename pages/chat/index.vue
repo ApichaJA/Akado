@@ -1,5 +1,6 @@
 <template>
   <section class="flex flex-col items-center my-20">
+    <h1 v-if="!chat">You Dont's have any Chat!</h1>
     <h1 v-if="chat">Chat</h1>
     <div class="card" v-for="(chatList, index) in chat" :key="index" @click="toChat(chatUID[0].admin_user_id)">
       <div class="card-content">
@@ -31,21 +32,8 @@ export default {
     }
   },
   methods: {
-    async login() {
-      await this.$auth
-        .loginWith("local", {
-          data: { account: this.theForm },
-        })
-        .then(({ data }) => {
-          // this.$auth.setUser(data.user)
-          this.$store.dispatch("user/setUser", data.user)
-        })
-        .catch((err) => {
-          console.log(err)
-        })
-    },
     toChat(aid){
-      this.$router.push(`${aid}`)
+      this.$router.push(`/chat/${aid}`)
     }
   },
   async asyncData({ $auth, $http }) {
