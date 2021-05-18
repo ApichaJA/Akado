@@ -1831,10 +1831,10 @@
   dependencies:
     "@types/node" "*"
 
-"@types/node@*":
-  version "14.14.37"
-  resolved "https://registry.yarnpkg.com/@types/node/-/node-14.14.37.tgz#a3dd8da4eb84a996c36e331df98d82abd76b516e"
-  integrity sha512-XYmBiy+ohOR4Lh5jE379fV2IU+6Jn4g5qASinhitfyO71b/sCo6MKsMLF5tc7Zf2CE8hViVQyYSobJNke8OvUw==
+"@types/node@*", "@types/node@^14.14.31":
+  version "14.14.45"
+  resolved "https://registry.yarnpkg.com/@types/node/-/node-14.14.45.tgz#ec2dfb5566ff814d061aef7e141575aedba245cf"
+  integrity sha512-DssMqTV9UnnoxDWu959sDLZzfvqCF0qDNRjaWeYSui9xkFe61kKo4l1TWNTQONpuXEm+gLMRvdlzvNHBamzmEw==
 
 "@types/node@^12.20.7":
   version "12.20.7"
@@ -2261,16 +2261,27 @@
     loglevel-plugin-prefix "^0.8.4"
     strip-ansi "^6.0.0"
 
-"@wdio/mocha-framework@^7.2.1":
-  version "7.3.0"
-  resolved "https://registry.yarnpkg.com/@wdio/mocha-framework/-/mocha-framework-7.3.0.tgz#51a1a6f72858de0e5b34563e70870bfdd0c027fa"
-  integrity sha512-xVbnuYZrLReu5ED1E1vZU6RQ5PjBPgdx5E6FFa66vDG+Cgu5HNd5uZmepcgJMIsr8YDE8GSOag993HrLBiRFxQ==
+"@wdio/logger@7.5.3":
+  version "7.5.3"
+  resolved "https://registry.yarnpkg.com/@wdio/logger/-/logger-7.5.3.tgz#50f81cf20b0cfbcbf1ab55d9a4c13d8e1129684e"
+  integrity sha512-r9EADpm0ncS1bDQSWi/nhF9C59/WNLbdAAFlo782E9ItFCpDhNit3aQP9vETv1vFxJRjUIM8Fw/HW8zwPadkbw==
+  dependencies:
+    chalk "^4.0.0"
+    loglevel "^1.6.0"
+    loglevel-plugin-prefix "^0.8.4"
+    strip-ansi "^6.0.0"
+
+"@wdio/mocha-framework@^7.6.0":
+  version "7.6.0"
+  resolved "https://registry.yarnpkg.com/@wdio/mocha-framework/-/mocha-framework-7.6.0.tgz#908326f769f01ff7899ec5873b38a0855882ac89"
+  integrity sha512-F/dyxgd8gxbVPbo8enNbStoA73BFRJ/WB6uugfQfl56z37v5jSlCyROACTwGVZe11OyMEds4HHXsw6Opve38uA==
   dependencies:
     "@types/mocha" "^8.0.0"
-    "@wdio/logger" "7.0.0"
-    "@wdio/types" "7.2.1"
-    "@wdio/utils" "7.3.0"
-    expect-webdriverio "^2.0.0"
+    "@types/node" "^14.14.31"
+    "@wdio/logger" "7.5.3"
+    "@wdio/types" "7.6.0"
+    "@wdio/utils" "7.6.0"
+    expect-webdriverio "^3.0.0"
     mocha "^8.0.1"
 
 "@wdio/protocols@7.1.1":
@@ -2339,6 +2350,14 @@
   dependencies:
     got "^11.8.1"
 
+"@wdio/types@7.6.0":
+  version "7.6.0"
+  resolved "https://registry.yarnpkg.com/@wdio/types/-/types-7.6.0.tgz#6cb1f75b6234d07dab28ec5ddcd6f1ed529777f4"
+  integrity sha512-BPPd7K6TpF4v1YaqUf+wDRwpys5asc7H7LDik4kHjLaGMwDfj+r0Goo3Z7xQn2fFdCuV99dkrI1N9vkgc2pDjA==
+  dependencies:
+    "@types/node" "^14.14.31"
+    got "^11.8.1"
+
 "@wdio/utils@7.3.0":
   version "7.3.0"
   resolved "https://registry.yarnpkg.com/@wdio/utils/-/utils-7.3.0.tgz#3b3d091c33b13b2eb6cbd2f2037e19b1b3315606"
@@ -2346,6 +2365,14 @@
   dependencies:
     "@wdio/logger" "7.0.0"
     "@wdio/types" "7.2.1"
+
+"@wdio/utils@7.6.0":
+  version "7.6.0"
+  resolved "https://registry.yarnpkg.com/@wdio/utils/-/utils-7.6.0.tgz#c927be22da3b826e928760b91d11a25e8f25f5cd"
+  integrity sha512-nfbQCAToX01pUCyojF2osVmg9grHWf3kGnK9gD65GG9lPXEs76T/ACYUfo+gRgeNBq8UTeZOoHSrXOtQrCoEbQ==
+  dependencies:
+    "@wdio/logger" "7.5.3"
+    "@wdio/types" "7.6.0"
 
 "@webassemblyjs/ast@1.9.0":
   version "1.9.0"
@@ -5236,10 +5263,10 @@ expand-brackets@^2.1.4:
     snapdragon "^0.8.1"
     to-regex "^3.0.1"
 
-expect-webdriverio@^2.0.0:
-  version "2.0.1"
-  resolved "https://registry.yarnpkg.com/expect-webdriverio/-/expect-webdriverio-2.0.1.tgz#08193c02d78037d68672a86535363df472e559fc"
-  integrity sha512-ocBCP9tiEC2fA31It1TZO+Z+d0hszx+pYI48XH6dvi6vSVM3NNIk52VBQbuw4aWwg7FMX06M0W0hIF7E5vGZjw==
+expect-webdriverio@^3.0.0:
+  version "3.0.0"
+  resolved "https://registry.yarnpkg.com/expect-webdriverio/-/expect-webdriverio-3.0.0.tgz#97210f0d874d230b56af3e94c93190c9cd3f02ef"
+  integrity sha512-LqfuWizdVk96nWS/mcAyDn5rlq4tUUf19+BGgpZ7nKWyxnU/nqWioLpLZ9HJfEEQyFgdK+0AgQejfARbv4qxfw==
   dependencies:
     expect "^26.6.2"
     jest-matcher-utils "^26.6.2"
